@@ -69,6 +69,7 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <section id="stats" style="background:#fdfbf6"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Numbers don't lie</div><h2>Player Statistics</h2></div><p>Explore GameCenter batting and pitching statistics, updated from recorded games. Award history is also available.</p></div>
 <div class="stats-controls" style="margin-bottom:15px"><button class="filter active" data-stat="awards">Award Winners</button><button class="filter" data-stat="batting">Batting Leaders</button><button class="filter" data-stat="pitching">Pitching Leaders</button></div>
 <div class="stats-toolbar" id="statsToolbar" hidden>
+<label>Season<select id="statsSeason"><option value="all">Career (all seasons)</option><option value="2027">2027</option><option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option></select></label>
 <label>Team<select id="statsTeam"><option value="">All teams</option></select></label>
 <label>Player search<input id="statsSearch" type="search" placeholder="Search players" autocomplete="off"></label>
 <label>Sort by<select id="statsSort"></select></label>
@@ -121,6 +122,7 @@ const statButtons=[...document.querySelectorAll('[data-stat]')];
 const statsPanel=document.getElementById('statsPanel');
 const statsToolbar=document.getElementById('statsToolbar');
 const statsTeam=document.getElementById('statsTeam');
+const statsSeason=document.getElementById('statsSeason');
 const statsSearch=document.getElementById('statsSearch');
 const statsSort=document.getElementById('statsSort');
 const statsRefresh=document.getElementById('statsRefresh');
@@ -131,7 +133,7 @@ const statColumns={
  pitching:[['ERA','ERA'],['IPouts','IP'],['RA','RA'],['PH','H'],['PBB','BB'],['PSO','SO'],['PHR','HR']]
 };
 const sortDefaults={batting:'AVG',pitching:'ERA'};
-let currentStat='awards',statRows=null,teamNames={},statsLoading=null;
+let currentStat='awards',statRows=null,teamNames={},statsLoading=null,loadedSeason=null;
 const safeText=v=>String(v??'');
 function statValue(p,k){
  if(k==='IPouts')return p.IP??`${Math.floor((Number(p.IPouts)||0)/3)}.${(Number(p.IPouts)||0)%3}`;
@@ -142,13 +144,14 @@ function statValue(p,k){
 function setStatsMessage(message,error=false){statsPanel.replaceChildren();const d=document.createElement('div');d.className='stats-message'+(error?' error':'');d.textContent=message;statsPanel.append(d)}
 async function loadStats(force=false){
  if(statsLoading)return statsLoading;
- if(statRows&&!force)return;
+ const requestedSeason=statsSeason.value;
+ if(statRows&&loadedSeason===requestedSeason&&!force)return;
  statsLoading=(async()=>{
-  const [statsRes,teamsRes]=await Promise.all([fetch(API+'/api/stats',{cache:'no-store'}),fetch(API+'/api/public',{cache:'no-store'})]);
+  const [statsRes,teamsRes]=await Promise.all([fetch(API+'/api/stats?season='+encodeURIComponent(requestedSeason),{cache:'no-store'}),fetch(API+'/api/public',{cache:'no-store'})]);
   if(!statsRes.ok||!teamsRes.ok)throw Error('The statistics service is temporarily unavailable.');
   const [rows,pub]=await Promise.all([statsRes.json(),teamsRes.json()]);
   if(!Array.isArray(rows)||!Array.isArray(pub.teams))throw Error('Unexpected statistics response.');
-  statRows=rows;
+  if(statsSeason.value===requestedSeason){statRows=rows;loadedSeason=requestedSeason;}
   teamNames=Object.fromEntries(pub.teams.map(t=>[String(t.id),String(t.name)]));
   const oldTeam=statsTeam.value;
   statsTeam.replaceChildren(new Option('All teams',''));
@@ -182,7 +185,7 @@ function drawStats(){
  const tbody=document.createElement('tbody');
  for(const p of players){const row=document.createElement('tr');for(const value of [p.name,teamNames[String(p.teamId)]||p.teamId]){const td=document.createElement('td');td.textContent=safeText(value);row.append(td)}for(const [key] of columns){const td=document.createElement('td');td.className='num';td.textContent=statValue(p,key);row.append(td)}tbody.append(row)}
  table.append(tbody);sc.append(table);statsPanel.append(sc);
- const foot=document.createElement('div');foot.className='table-foot';foot.textContent=`${players.length} player(s) · GameCenter totals across recorded games · No season filter yet`;
+ const foot=document.createElement('div');foot.className='table-foot';foot.textContent=`${players.length} player(s) · ${statsSeason.value==='all'?'Career totals (all recorded seasons)':statsSeason.value+' season'} · GameCenter statistics`;
  statsPanel.append(foot);
 }
 function configureSort(type){statsSort.replaceChildren();for(const [key,label] of statColumns[type])statsSort.add(new Option(label,key));statsSort.value=sortDefaults[type]}
@@ -196,6 +199,7 @@ async function showStats(type,force=false){
 }
 statButtons.forEach(b=>b.addEventListener('click',()=>showStats(b.dataset.stat)));
 statsTeam.addEventListener('change',drawStats);
+statsSeason.addEventListener('change',()=>{statRows=null;loadedSeason=null;showStats(currentStat,true)});
 statsSearch.addEventListener('input',drawStats);
 statsSort.addEventListener('change',drawStats);
 statsRefresh.addEventListener('click',()=>showStats(currentStat,true));
