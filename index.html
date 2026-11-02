@@ -14,24 +14,13 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 @media(max-width:900px){.navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:var(--navy);padding:18px 20px 22px;flex-direction:column;align-items:flex-start;border-top:1px solid #ffffff18}.navlinks.open{display:flex}.menu-btn{display:block}.nav-actions{display:none}.hero-inner{grid-template-columns:1fr;padding:60px 0}.hero-card{max-width:500px}.section-grid,.sponsor-wrap{grid-template-columns:1fr}.team-grid{grid-template-columns:repeat(2,1fr)}.timeline{grid-template-columns:repeat(3,1fr)}.news-grid{grid-template-columns:1fr 1fr}.news-card:first-child{grid-column:span 2}.statbox{padding:18px 14px}.statbox:first-child{padding-left:0}}
 @media(max-width:600px){.wrap{width:min(100% - 28px,1180px)}.topbar .wrap{font-size:9px}.brand{min-width:0}.brand strong{font-size:12px}.brand small{font-size:9px}.hero-inner{padding:46px 0}.hero h1{font-size:47px}.hero p{font-size:14px}.hero-card{padding:17px}.club-mark{width:54px;height:54px}.statgrid{grid-template-columns:1fr 1fr}.statbox{border-bottom:1px solid var(--line)}.statbox:nth-child(2){border-right:0}.statbox:nth-child(3){padding-left:0;border-bottom:0}.statbox:nth-child(4){border:0;border-bottom:0}.statbox strong{font-size:24px}section{padding:55px 0}.section-head{align-items:flex-start;flex-direction:column}.team-grid{grid-template-columns:1fr 1fr;gap:9px}.team-card{padding:14px}.team-card h3{font-size:14px}.team-card p{font-size:11px}.team-logo{width:40px;height:40px}.schedule-list{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.news-card:first-child{grid-column:auto}.timeline{grid-template-columns:1fr 1fr}.playoff-grid{grid-template-columns:1fr}.sponsor-wrap{padding:20px}.footer-inner{align-items:flex-start;flex-direction:column}.match-note{font-size:10px}}
 
-/* History navigation submenu */
-.nav-dropdown{position:relative}
-.nav-dropdown-toggle{border:0;background:transparent;color:inherit;font:inherit;padding:10px 0;cursor:pointer}
-.nav-dropdown-toggle:hover,.nav-dropdown-toggle:focus-visible{color:#fff}
-.nav-dropdown-menu{display:none;position:absolute;top:100%;left:0;min-width:205px;background:#172338;border:1px solid #ffffff25;border-radius:10px;padding:7px;box-shadow:0 16px 30px #0005;z-index:30}
-.nav-dropdown-menu a{display:block;padding:10px 12px;border-radius:6px;white-space:nowrap;color:#d4d9e2}
-.nav-dropdown-menu a:hover,.nav-dropdown-menu a:focus-visible{background:#ffffff16;color:white}
-.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu,.nav-dropdown.open .nav-dropdown-menu{display:block}
-.awards-section{background:#fdfbf6}
-.awards-section .panel{margin-top:16px}
-@media(max-width:900px){.nav-dropdown{width:100%}.nav-dropdown-toggle{padding:0;text-align:left}.nav-dropdown-menu{position:static;box-shadow:none;background:transparent;border:0;padding:6px 0 0 12px;min-width:0}.nav-dropdown-menu a{padding:9px 12px}}
 </style>
 </head>
 <body>
 <div class="topbar"><div class="wrap"><span><i class="live-dot"></i>Official League Headquarters</span><span>Play hard. Play fair. Play Sandlot.</span></div></div>
 <header class="header"><div class="wrap nav">
 <a class="brand" href="#home" aria-label="SWL home"><div class="logo">SWL</div><div><strong>SANDLOT WIFFLE BALL</strong><small>LEAGUE · EST. 2022</small></div></a>
-<nav class="navlinks" id="navlinks"><a href="#standings">Standings</a><a href="#teams">Teams</a><a href="#schedule">Schedule</a><a href="#stats">Stats</a><a href="#playoffs">Playoffs</a><div class="nav-dropdown"><button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="historyMenu">History <span aria-hidden="true">▾</span></button><div class="nav-dropdown-menu" id="historyMenu"><a href="#history">League History</a><a href="#championship-history">Championship History</a><a href="#awards">Awards</a></div></div><a href="/gamecenter/">GameCenter</a><a href="#sponsors">Sponsors</a></nav>
+<nav class="navlinks" id="navlinks"><a href="#standings">Standings</a><a href="#teams">Teams</a><a href="#schedule">Schedule</a><a href="#stats">Stats</a><a href="#playoffs">Playoffs</a><a href="history.html">History</a><a href="/gamecenter/">GameCenter</a><a href="#sponsors">Sponsors</a></nav>
 <div class="nav-actions"><a class="nav-cta join-cta" href="#join">JOIN THE LEAGUE ↗</a><a class="nav-cta" href="#sponsors">SPONSOR SWL ↗</a></div><button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰ Menu</button>
 </div></header>
 <main id="home">
@@ -96,30 +85,6 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <div class="panel bracket"><h3>Championship · Best of 5</h3><div class="round-label">First to 3 wins</div><div class="bracket-game"><div class="bracket-team"><span>Ice Cold Pitchers</span><span class="score">G1: 10–7</span></div><div class="bracket-team winner"><span>Southcentral Sluggers</span><span class="score">G1: 7–10</span></div></div><div class="bracket-game"><div class="bracket-team"><span>Ice Cold Pitchers</span><span class="score">G2: 9–8</span></div><div class="bracket-team winner"><span>Southcentral Sluggers</span><span class="score">G2: 8–9</span></div></div><div class="bracket-game"><div class="bracket-team winner"><span>Southcentral Sluggers</span><span class="score">G3: 8–6</span></div><div class="bracket-team"><span>Ice Cold Pitchers</span><span class="score">G3: 6–8</span></div></div><div class="bracket-game"><div class="bracket-team winner"><span>Southcentral Sluggers</span><span class="score">G4: 10–2</span></div><div class="bracket-team"><span>Ice Cold Pitchers</span><span class="score">G4: 2–10</span></div></div><div class="bracket-game"><div class="bracket-team winner"><span>Southcentral Sluggers</span><span class="score">G5: 12–5</span></div><div class="bracket-team"><span>Ice Cold Pitchers</span><span class="score">G5: 5–12</span></div></div><div style="background:#fff6dc;border-radius:9px;padding:12px;font-size:12px"><b>🏆 2026 Champions: Southcentral Sluggers</b><br><span class="muted">Championship MVP: Ian Schrock</span></div></div>
 </div></div></section>
 
-<section id="history" class="history"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Built from the sandlot</div><h2 id="championship-history">Championship History</h2></div><p>From four founding teams to a six-team league, the SWL has built its own traditions, rivalries, and postseason legends.</p></div>
-<div class="timeline">
-<div class="year-card"><div class="year">2022</div><h3>Where it started</h3><p>Four original clubs: Biscuits, Wolverines, Sluggers, and Brew Crew. <span class="champion">Champion: Sluggers</span><br>MVP: Alex Bison.</p></div>
-<div class="year-card"><div class="year">2023</div><h3>Sluggers repeat</h3><p>Pigeons joined in place of the Wolverines. Sluggers swept Brew Crew, then Biscuits. <span class="champion">Champion: Sluggers</span><br>MVP: Alex Bison.</p></div>
-<div class="year-card"><div class="year">2024</div><h3>Expansion season</h3><p>Pitchers and Hustlers entered the league; four of six teams made the playoffs. <span class="champion">Champion: Hustlers</span><br>MVP: Tanner Kremer.</p></div>
-<div class="year-card"><div class="year">2025</div><h3>A new era</h3><p>Outlaws and Underdawgz expanded the league to eight teams. <span class="champion">Champion: Pitchers</span><br>MVP: Clay Nohel.</p></div>
-<div class="year-card"><div class="year">2026</div><h3>The comeback</h3><p>Hammerheads and Curve Ballers joined a refreshed lineup; Sluggers returned under new management. <span class="champion">Champion: Sluggers</span><br>MVP: Chris Schrock.</p></div>
-</div><p style="font-size:10px;color:#8995a7;margin-top:17px">Historical championship winners and award details reflect the league history provided. Add missing game scores and official season records to complete the archive.</p></div></section>
-
-<section id="awards" class="awards-section"><div class="wrap"><div class="section-head"><div><div class="section-kicker">SWL honors</div><h2>Awards History</h2></div><p>Explore regular-season MVPs and Championship MVPs throughout SWL history.</p></div>
-<div class="panel"><div class="table-scroll"><table><thead><tr><th>Season</th><th>Player</th><th>Team</th><th>Award</th></tr></thead><tbody>
-<tr><td>2026</td><td>Ian Schrock</td><td>Southcentral Sluggers</td><td>Championship MVP</td></tr>
-<tr><td>2026</td><td>Chris Schrock</td><td>Southcentral Sluggers</td><td>Season MVP</td></tr>
-<tr><td>2025</td><td>Clay Nohel</td><td>Ice Cold Pitchers</td><td>Championship MVP</td></tr>
-<tr><td>2025</td><td>Clay Nohel</td><td>Ice Cold Pitchers</td><td>Season MVP</td></tr>
-<tr><td>2024</td><td>Roger Pharris</td><td>Hartford Hustlers</td><td>Championship MVP</td></tr>
-<tr><td>2024</td><td>Tanner Kremer</td><td>Bowling Green Biscuits</td><td>Season MVP</td></tr>
-<tr><td>2023</td><td>Alex Bison</td><td>Southcentral Sluggers</td><td>Championship MVP</td></tr>
-<tr><td>2023</td><td>Alex Bison</td><td>Southcentral Sluggers</td><td>Season MVP</td></tr>
-<tr><td>2022</td><td>Alex Bison</td><td>Southcentral Sluggers</td><td>Championship MVP</td></tr>
-<tr><td>2022</td><td>Alex Bison</td><td>Southcentral Sluggers</td><td>Season MVP</td></tr>
-</tbody></table></div><div class="table-foot"><span>Award history based on league records provided.</span><span>More stats coming</span></div></div>
-</div></section>
-
 <section id="sponsors"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Support local sports</div><h2>Become an SWL Sponsor</h2></div><p>Help grow community baseball, support local athletes, and put your business in front of players, families, and fans.</p></div>
 <div class="sponsor-wrap"><div><div class="section-kicker">Partner with the league</div><h3>Local businesses.<br>Lasting impact.</h3><p>SWL sponsorships help fund equipment, uniforms, field operations, and league growth. Choose a package or contribute a gift in any amount.</p><a class="btn red" href="mailto:sandlotwiffleball.2022@gmail.com?subject=SWL%20Sponsorship%20Inquiry">DISCUSS A SPONSORSHIP ↗</a><div class="sponsor-logos"><div class="sponsor-placeholder">YOUR LOGO HERE</div><div class="sponsor-placeholder">COMMUNITY PARTNER</div><div class="sponsor-placeholder">LOCAL BUSINESS</div></div></div>
 <div class="tiers"><div class="tier"><div class="tier-price">$250</div><div><b>Banner Placement</b><span>Your business listed on the league sponsorship banner.</span></div></div><div class="tier"><div class="tier-price">$500</div><div><b>Dedicated Banner</b><span>Your own sponsor banner at the field.</span></div></div><div class="tier"><div class="tier-price">$1,000</div><div><b>Featured Partner</b><span>Your own banner plus social media recognition.</span></div></div><div class="tier"><div class="tier-price">Any</div><div><b>Community Gift</b><span>Every contribution helps. Custom packages welcome.</span></div></div></div></div></div></section>
@@ -129,16 +94,11 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <div class="panel" style="padding:12px"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe6DPwTV0fXSkm9GE3mpIIkyzsIJ46AojXF_wcNyz1Xod1jxA/viewform?embedded=true" title="SWL Join The League registration form" width="100%" height="1100" frameborder="0" marginheight="0" marginwidth="0" style="display:block;border:0;max-width:100%">Loading form…</iframe></div>
 </div></section>
 </main>
-<footer class="footer"><div class="wrap"><div class="footer-inner"><div class="brand"><div class="logo">SWL</div><div><strong>SANDLOT WIFFLE BALL LEAGUE</strong><small>EST. 2022 · BUILT FOR THE GAME</small><p>Community, competition, and unforgettable summers.</p></div></div><div class="footer-links"><a href="#standings">Standings</a><a href="#teams">Teams</a><a href="#history">History</a><a href="#sponsors">Sponsors</a><a href="https://www.instagram.com/sandlotwiffleballleague/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.youtube.com/@SandlotWiffleballLeague" target="_blank" rel="noopener">YouTube ↗</a></div></div><div class="disclaimer">Unofficial prototype built from league information provided by SWL leadership. Records marked unavailable are intentionally left blank rather than estimated. Update team records, player statistics, schedule dates, and official brand assets before public launch. © Sandlot Wiffle Ball League.</div></div></footer>
+<footer class="footer"><div class="wrap"><div class="footer-inner"><div class="brand"><div class="logo">SWL</div><div><strong>SANDLOT WIFFLE BALL LEAGUE</strong><small>EST. 2022 · BUILT FOR THE GAME</small><p>Community, competition, and unforgettable summers.</p></div></div><div class="footer-links"><a href="#standings">Standings</a><a href="#teams">Teams</a><a href="history.html">History</a><a href="#sponsors">Sponsors</a><a href="https://www.instagram.com/sandlotwiffleballleague/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.youtube.com/@SandlotWiffleballLeague" target="_blank" rel="noopener">YouTube ↗</a></div></div><div class="disclaimer">Unofficial prototype built from league information provided by SWL leadership. Records marked unavailable are intentionally left blank rather than estimated. Update team records, player statistics, schedule dates, and official brand assets before public launch. © Sandlot Wiffle Ball League.</div></div></footer>
 <script>
 const menuBtn=document.getElementById('menuBtn'), nav=document.getElementById('navlinks');
 menuBtn.addEventListener('click',()=>nav.classList.toggle('open'));
-nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');historyDropdown.classList.remove('open');historyToggle.setAttribute('aria-expanded','false')}));
-const historyDropdown=document.querySelector('.nav-dropdown');
-const historyToggle=document.querySelector('.nav-dropdown-toggle');
-historyToggle.addEventListener('click',()=>{const open=historyDropdown.classList.toggle('open');historyToggle.setAttribute('aria-expanded',String(open))});
-document.addEventListener('click',e=>{if(!historyDropdown.contains(e.target)){historyDropdown.classList.remove('open');historyToggle.setAttribute('aria-expanded','false')}});
-
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 const statButtons=[...document.querySelectorAll('[data-stat]')];
 const statsPanel=document.getElementById('statsPanel');
 const statsToolbar=document.getElementById('statsToolbar');
