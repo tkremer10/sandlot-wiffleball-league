@@ -14,14 +14,14 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 @media(max-width:900px){.navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:var(--navy);padding:18px 20px 22px;flex-direction:column;align-items:flex-start;border-top:1px solid #ffffff18}.navlinks.open{display:flex}.menu-btn{display:block}.nav-actions{display:none}.hero-inner{grid-template-columns:1fr;padding:60px 0}.hero-card{max-width:500px}.section-grid,.sponsor-wrap{grid-template-columns:1fr}.team-grid{grid-template-columns:repeat(2,1fr)}.timeline{grid-template-columns:repeat(3,1fr)}.news-grid{grid-template-columns:1fr 1fr}.news-card:first-child{grid-column:span 2}.statbox{padding:18px 14px}.statbox:first-child{padding-left:0}}
 @media(max-width:600px){.wrap{width:min(100% - 28px,1180px)}.topbar .wrap{font-size:9px}.brand{min-width:0}.brand strong{font-size:12px}.brand small{font-size:9px}.hero-inner{padding:46px 0}.hero h1{font-size:47px}.hero p{font-size:14px}.hero-card{padding:17px}.club-mark{width:54px;height:54px}.statgrid{grid-template-columns:1fr 1fr}.statbox{border-bottom:1px solid var(--line)}.statbox:nth-child(2){border-right:0}.statbox:nth-child(3){padding-left:0;border-bottom:0}.statbox:nth-child(4){border:0;border-bottom:0}.statbox strong{font-size:24px}section{padding:55px 0}.section-head{align-items:flex-start;flex-direction:column}.team-grid{grid-template-columns:1fr 1fr;gap:9px}.team-card{padding:14px}.team-card h3{font-size:14px}.team-card p{font-size:11px}.team-logo{width:40px;height:40px}.schedule-list{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.news-card:first-child{grid-column:auto}.timeline{grid-template-columns:1fr 1fr}.playoff-grid{grid-template-columns:1fr}.sponsor-wrap{padding:20px}.footer-inner{align-items:flex-start;flex-direction:column}.match-note{font-size:10px}}
 
-.awards-section{background:#fdfbf6}.awards-section .panel{margin-top:16px}.player-profile-link{color:#b72d37;font-weight:700;text-decoration:underline;text-underline-offset:3px}.player-profile-link:hover{color:#142036}
+.history-awards{margin-top:36px}.history-awards .section-head{margin-bottom:16px}.history-awards .section-head h2{color:#fff}.awards-section .panel{margin-top:16px}.player-profile-link{color:#b72d37;font-weight:700;text-decoration:underline;text-underline-offset:3px}.player-profile-link:hover{color:#142036}
 </style>
 </head>
 <body>
 <div class="topbar"><div class="wrap"><span><i class="live-dot"></i>Official League Headquarters</span><span>Play hard. Play fair. Play Sandlot.</span></div></div>
 <header class="header"><div class="wrap nav">
 <a class="brand" href="#home" aria-label="SWL home"><div class="logo">SWL</div><div><strong>SANDLOT WIFFLE BALL</strong><small>LEAGUE · EST. 2022</small></div></a>
-<nav class="navlinks" id="navlinks"><a href="#standings">Standings</a><a href="#teams">Teams</a><a href="#schedule">Schedule</a><a href="#stats">Stats</a><a href="#playoffs">Playoffs</a><a href="#history">History</a><a href="#awards">Awards</a><a href="/gamecenter/">GameCenter</a><a href="#sponsors">Sponsors</a></nav>
+<nav class="navlinks" id="navlinks"><a href="#standings">Standings</a><a href="#teams">Teams</a><a href="#schedule">Schedule</a><a href="#stats">Stats</a><a href="#playoffs">Playoffs</a><a href="#history">History</a><a href="/gamecenter/">GameCenter</a><a href="#sponsors">Sponsors</a></nav>
 <div class="nav-actions"><a class="nav-cta join-cta" href="#join">JOIN THE LEAGUE ↗</a><a class="nav-cta" href="#sponsors">SPONSOR SWL ↗</a></div><button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰ Menu</button>
 </div></header>
 <main id="home">
@@ -59,8 +59,8 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <div class="game"><div class="datebox"><b>CH</b><small>G5</small></div><div class="game-info"><b>Sluggers 12, Pitchers 5</b><span>Championship · Sluggers clinch title</span></div><div class="game-status">Final</div></div>
 </div></div></section>
 
-<section id="stats" style="background:#fdfbf6"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Numbers don't lie</div><h2>Player Statistics</h2></div><p>Explore GameCenter batting and pitching statistics, updated from recorded games. Award history is also available.</p></div>
-<div class="stats-controls" style="margin-bottom:15px"><button class="filter active" data-stat="awards">Award Winners</button><button class="filter" data-stat="batting">Batting Leaders</button><button class="filter" data-stat="pitching">Pitching Leaders</button></div>
+<section id="stats" style="background:#fdfbf6"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Numbers don't lie</div><h2>Player Statistics</h2></div><p>Explore GameCenter batting and pitching statistics, updated from recorded games. Switch between batting and pitching leaders.</p></div>
+<div class="stats-controls" style="margin-bottom:15px"><button class="filter active" data-stat="batting">Batting Leaders</button><button class="filter" data-stat="pitching">Pitching Leaders</button></div>
 <div class="stats-toolbar" id="statsToolbar" hidden>
 <label>Season<select id="statsSeason"><option value="all">Career (all seasons)</option><option value="2027">2027</option><option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option></select></label>
 <label>Team<select id="statsTeam"><option value="">All teams</option></select></label>
@@ -68,18 +68,7 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <label>Sort by<select id="statsSort"></select></label>
 <button type="button" class="filter" id="statsRefresh">Refresh stats</button>
 </div>
-<div class="panel" id="statsPanel"><div class="table-scroll"><table><thead><tr><th>Season</th><th>Player</th><th>Team</th><th>Award</th></tr></thead><tbody>
-<tr><td>2026</td><td>Ian Schrock</td><td>Southcentral Sluggers</td><td>Championship MVP</td></tr>
-<tr><td>2026</td><td>Chris Schrock</td><td>Southcentral Sluggers</td><td>Season MVP</td></tr>
-<tr><td>2025</td><td>Clay Nohel</td><td>Ice Cold Pitchers</td><td>Championship MVP</td></tr>
-<tr><td>2025</td><td>Clay Nohel</td><td>Ice Cold Pitchers</td><td>Season MVP</td></tr>
-<tr><td>2024</td><td>Roger Pharris</td><td>Hartford Hustlers</td><td>Championship MVP</td></tr>
-<tr><td>2024</td><td>Tanner Kremer</td><td>Bowling Green Biscuits</td><td>Season MVP</td></tr>
-<tr><td>2023</td><td>Alex Bison</td><td>Southcentral Sluggers</td><td>Championship MVP</td></tr>
-<tr><td>2023</td><td>Alex Bison</td><td>Southcentral Sluggers</td><td>Season MVP</td></tr>
-<tr><td>2022</td><td>Alex Bison</td><td>Southcentral Sluggers</td><td>Championship MVP</td></tr>
-<tr><td>2022</td><td>Alex Bison</td><td>Southcentral Sluggers</td><td>Season MVP</td></tr>
-</tbody></table></div><div class="table-foot"><span>Award history based on league records provided.</span><span>More stats coming</span></div></div>
+<div class="panel" id="statsPanel"><div class="stats-message">Loading batting statistics…</div></div>
 </div></section>
 
 <section id="playoffs"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Win or go home</div><h2>2026 Playoff Bracket</h2></div><p>The Sluggers survived a semifinal thriller, then became champions after winning three straight championship games.</p></div>
@@ -95,9 +84,7 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <div class="year-card"><div class="year">2024</div><h3>Expansion season</h3><p>Pitchers and Hustlers entered the league; four of six teams made the playoffs. <span class="champion">Champion: Hustlers</span><br>MVP: Tanner Kremer.</p></div>
 <div class="year-card"><div class="year">2025</div><h3>A new era</h3><p>Outlaws and Underdawgz expanded the league to eight teams. <span class="champion">Champion: Pitchers</span><br>MVP: Clay Nohel.</p></div>
 <div class="year-card"><div class="year">2026</div><h3>The comeback</h3><p>Hammerheads and Curve Ballers joined a refreshed lineup; Sluggers returned under new management. <span class="champion">Champion: Sluggers</span><br>MVP: Chris Schrock.</p></div>
-</div><p style="font-size:10px;color:#8995a7;margin-top:17px">Historical championship winners and award details reflect the league history provided. Add missing game scores and official season records to complete the archive.</p></div></section>
-
-<section id="awards" class="awards-section"><div class="wrap"><div class="section-head"><div><div class="section-kicker">SWL honors</div><h2>Awards History</h2></div><p>Explore regular-season MVPs and Championship MVPs throughout SWL history.</p></div>
+</div><p style="font-size:10px;color:#8995a7;margin-top:17px">Historical championship winners and award details reflect the league history provided. Add missing game scores and official season records to complete the archive.</p><div id="awards" class="history-awards"><div class="section-head"><div><div class="section-kicker">SWL honors</div><h2>Awards History</h2></div><p>Explore regular-season MVPs and Championship MVPs throughout SWL history.</p></div>
 <div class="panel"><div class="table-scroll"><table><thead><tr><th>Season</th><th>Player</th><th>Team</th><th>Award</th></tr></thead><tbody>
 <tr><td>2026</td><td>Ian Schrock</td><td>Southcentral Sluggers</td><td>Championship MVP</td></tr>
 <tr><td>2026</td><td>Chris Schrock</td><td>Southcentral Sluggers</td><td>Season MVP</td></tr>
@@ -110,7 +97,9 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <tr><td>2022</td><td>Alex Bison</td><td>Southcentral Sluggers</td><td>Championship MVP</td></tr>
 <tr><td>2022</td><td>Alex Bison</td><td>Southcentral Sluggers</td><td>Season MVP</td></tr>
 </tbody></table></div><div class="table-foot"><span>Award history based on league records provided.</span><span>More stats coming</span></div></div>
-</div></section>
+</div></div></section>
+
+
 <section id="sponsors"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Support local sports</div><h2>Become an SWL Sponsor</h2></div><p>Help grow community baseball, support local athletes, and put your business in front of players, families, and fans.</p></div>
 <div class="sponsor-wrap"><div><div class="section-kicker">Partner with the league</div><h3>Local businesses.<br>Lasting impact.</h3><p>SWL sponsorships help fund equipment, uniforms, field operations, and league growth. Choose a package or contribute a gift in any amount.</p><a class="btn red" href="mailto:sandlotwiffleball.2022@gmail.com?subject=SWL%20Sponsorship%20Inquiry">DISCUSS A SPONSORSHIP ↗</a><div class="sponsor-logos"><div class="sponsor-placeholder">YOUR LOGO HERE</div><div class="sponsor-placeholder">COMMUNITY PARTNER</div><div class="sponsor-placeholder">LOCAL BUSINESS</div></div></div>
 <div class="tiers"><div class="tier"><div class="tier-price">$250</div><div><b>Banner Placement</b><span>Your business listed on the league sponsorship banner.</span></div></div><div class="tier"><div class="tier-price">$500</div><div><b>Dedicated Banner</b><span>Your own sponsor banner at the field.</span></div></div><div class="tier"><div class="tier-price">$1,000</div><div><b>Featured Partner</b><span>Your own banner plus social media recognition.</span></div></div><div class="tier"><div class="tier-price">Any</div><div><b>Community Gift</b><span>Every contribution helps. Custom packages welcome.</span></div></div></div></div></div></section>
@@ -133,14 +122,14 @@ const statsSeason=document.getElementById('statsSeason');
 const statsSearch=document.getElementById('statsSearch');
 const statsSort=document.getElementById('statsSort');
 const statsRefresh=document.getElementById('statsRefresh');
-const awardHTML=statsPanel.innerHTML;
+
 const API='https://swl-gamecenter-api.sandlotwiffleball-2022.workers.dev';
 const statColumns={
  batting:[['AVG','AVG'],['AB','AB'],['H','H'],['Singles','1B'],['Doubles','2B'],['Triples','3B'],['HR','HR'],['BB','BB'],['SO','SO'],['RBI','RBI'],['Runs','R']],
  pitching:[['ERA','ERA'],['IPouts','IP'],['RA','RA'],['PH','H'],['PBB','BB'],['PSO','SO'],['PHR','HR']]
 };
 const sortDefaults={batting:'AVG',pitching:'ERA'};
-let currentStat='awards',statRows=null,teamNames={},statsLoading=null,loadedSeason=null;
+let currentStat='batting',statRows=null,teamNames={},statsLoading=null,loadedSeason=null;
 const safeText=v=>String(v??'');
 function statValue(p,k){
  if(k==='IPouts')return p.IP??`${Math.floor((Number(p.IPouts)||0)/3)}.${(Number(p.IPouts)||0)%3}`;
@@ -168,7 +157,6 @@ async function loadStats(force=false){
  try{await statsLoading}finally{statsLoading=null}
 }
 function drawStats(){
- if(currentStat==='awards'){statsToolbar.hidden=true;statsPanel.innerHTML=awardHTML;return}
  statsToolbar.hidden=false;
  if(!statRows){setStatsMessage('Loading statistics…');return}
  const category=currentStat;
@@ -198,7 +186,6 @@ function drawStats(){
 function configureSort(type){statsSort.replaceChildren();for(const [key,label] of statColumns[type])statsSort.add(new Option(label,key));statsSort.value=sortDefaults[type]}
 async function showStats(type,force=false){
  currentStat=type;statButtons.forEach(b=>b.classList.toggle('active',b.dataset.stat===type));
- if(type==='awards'){drawStats();return}
  if(statsSort.dataset.category!==type){configureSort(type);statsSort.dataset.category=type}
  setStatsMessage('Loading statistics…');
  try{await loadStats(force);if(currentStat===type)drawStats()}
@@ -210,6 +197,7 @@ statsSeason.addEventListener('change',()=>{statRows=null;loadedSeason=null;showS
 statsSearch.addEventListener('input',drawStats);
 statsSort.addEventListener('change',drawStats);
 statsRefresh.addEventListener('click',()=>showStats(currentStat,true));
+showStats('batting');
 </script>
 <script>
 // Historical 2026 results are preserved independently of the live GameCenter feed.
