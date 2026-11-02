@@ -217,7 +217,10 @@ function standingsTeamIcon(teamName){
   southcentralsluggers:['sluggers','SS'],sluggers:['sluggers','SS'],
   curveballers:['curve','CB'],
   goldcitybrewcrew:['brewcrew','BC'],brewcrew:['brewcrew','BC'],
-  hammerheads:['hammerheads','HH']
+  hammerheads:['hammerheads','HH'],
+  southernkentuckypigeons:['blue','PIG'],pigeons:['blue','PIG'],
+  outlaws:['purple','OUT'],underdawgz:['green','UD'],hustlers:['gold','HUS'],
+  warrencounty:['blue','WC'],bowlinggreen:['biscuits','BG']
  };
  const [style,initials]=known[key]||['',String(teamName||'').trim().split(/\s+/).map(w=>w[0]||'').join('').slice(0,3).toUpperCase()];
  const icon=document.createElement('span');icon.className='team-icon'+(style?' '+style:'');icon.textContent=initials;
@@ -226,11 +229,11 @@ function standingsTeamIcon(teamName){
 function renderStandingsRows(rows){
  const body=document.getElementById('liveStandingsRows');body.replaceChildren();
  if(!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=8;td.textContent='No standings data for this season yet.';tr.append(td);body.append(tr);return;}
- rows.forEach((t,i)=>{const tr=document.createElement('tr'),played=t.w+t.l,diff=t.rf-t.ra;
-  [String(i+1).padStart(2,'0'),t.name,t.w,t.l,played?(t.w/played).toFixed(3):'.000',t.rf,t.ra,(diff>0?'+':'')+diff].forEach((v,j)=>{const td=document.createElement('td');if(j===1){const cell=document.createElement('div');cell.className='teamcell';cell.append(standingsTeamIcon(t.name));const label=document.createElement('span');label.textContent=standingsEscape(t.name);cell.append(label);td.append(cell);}else td.textContent=standingsEscape(v);if(j>=2)td.className='num';tr.append(td)});body.append(tr);
+ rows.forEach((t,i)=>{const tr=document.createElement('tr'),played=t.w+t.l,diff=t.rf===null||t.ra===null?null:t.rf-t.ra;
+  [String(i+1).padStart(2,'0'),t.name,t.w,t.l,played?(t.w/played).toFixed(3):'.000',t.rf===null?'—':t.rf,t.ra===null?'—':t.ra,diff===null?'—':(diff>0?'+':'')+diff].forEach((v,j)=>{const td=document.createElement('td');if(j===1){const cell=document.createElement('div');cell.className='teamcell';cell.append(standingsTeamIcon(t.name));const label=document.createElement('span');label.textContent=standingsEscape(t.name);cell.append(label);td.append(cell);}else td.textContent=standingsEscape(v);if(j>=2)td.className='num';tr.append(td)});body.append(tr);
  });
 }
-function sortStandings(rows){return rows.sort((a,b)=>((b.w/(b.w+b.l)||0)-(a.w/(a.w+a.l)||0))||b.w-a.w||((b.rf-b.ra)-(a.rf-a.ra))||b.rf-a.rf||a.name.localeCompare(b.name));}
+function sortStandings(rows){return rows.sort((a,b)=>(a.position&&b.position?a.position-b.position:0)||((b.w/(b.w+b.l)||0)-(a.w/(a.w+a.l)||0))||b.w-a.w||((b.rf-b.ra)-(a.rf-a.ra))||b.rf-a.rf||a.name.localeCompare(b.name));}
 let standingsRequest=0;
 async function loadLiveStandings(){
  const season=document.getElementById('standingsSeason').value;
@@ -240,18 +243,26 @@ async function loadLiveStandings(){
  document.getElementById('standingsTitle').textContent=season+' Regular Season Standings';
  document.getElementById('standings2026Postseason').style.display=season==='2026'?'':'none';
  refresh.disabled=true;
- if(SWL_HISTORICAL_STANDINGS[season]){
-  renderStandingsRows(sortStandings(SWL_HISTORICAL_STANDINGS[season].map(t=>({...t}))));
-  status.textContent='Final historical standings';
-  document.getElementById('standingsFootnote').textContent='Archived 2026 results · preserved independently of GameCenter.';
-  refresh.disabled=false;return;
- }
  status.textContent='Loading '+season+' standings…';
  try{
   const response=await fetch('https://swl-gamecenter-api.sandlotwiffleball-2022.workers.dev/api/public',{cache:'no-store'});
   if(!response.ok)throw Error('GameCenter API returned '+response.status);
   const data=await response.json();if(!Array.isArray(data.teams)||!Array.isArray(data.games))throw Error('Invalid standings data');
   if(request!==standingsRequest)return;
+  const historical=(data.historicalStandings||[]).filter(r=>r.season===season);
+  if(historical.length){
+   const rows=historical.map(r=>({name:r.teamName,w:r.wins,l:r.losses,rf:r.runsFor,ra:r.runsAgainst,position:r.position}));
+   renderStandingsRows(sortStandings(rows));
+   status.textContent='Final historical standings · '+historical.length+' teams';
+   document.getElementById('standingsFootnote').textContent='Archived '+season+' standings from SWL Google Sheets.';
+   return;
+  }
+  if(SWL_HISTORICAL_STANDINGS[season]){
+   renderStandingsRows(sortStandings(SWL_HISTORICAL_STANDINGS[season].map(t=>({...t}))));
+   status.textContent='Final historical standings';
+   document.getElementById('standingsFootnote').textContent='Archived 2026 results · preserved until imported into Google Sheets.';
+   return;
+  }
   const standings=new Map();let counted=0;
   for(const g of data.games){
    if(String(g.date||'').slice(0,4)!==season||String(g.status||'').trim().toLowerCase()!=='final'||String(g.gameType||'').trim().toLowerCase()!=='regular season')continue;
