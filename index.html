@@ -281,7 +281,11 @@ async function loadLiveStandings(){
    if(hs>as){home.w++;away.l++}else{away.w++;home.l++}counted++;
   }
   // Show all registered teams for the active season, including teams that have not played.
-  if(season==='2027')for(const t of data.teams)if(!standings.has(String(t.id)))standings.set(String(t.id),{name:String(t.name||t.id),w:0,l:0,rf:0,ra:0});
+  if(season==='2027')for(const t of data.teams){
+    const teamName=String(t.name||t.id).trim();
+    if(teamName.toLowerCase()==='hartford hustlers')continue;
+    if(!standings.has(String(t.id)))standings.set(String(t.id),{name:teamName,w:0,l:0,rf:0,ra:0});
+   }
   renderStandingsRows(sortStandings([...standings.values()]));
   status.textContent=counted?counted+' finalized regular-season game'+(counted===1?'':'s')+' counted':(season==='2027'?'No finalized games yet':'No imported regular-season games for '+season);
   document.getElementById('standingsFootnote').textContent='Only finalized games marked Regular Season count · refreshed automatically.';
