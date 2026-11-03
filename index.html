@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
- 
-<head>
 <!-- Google Analytics 4 — SWL -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X88JFGBX37"></script>
 <script>
@@ -11,7 +9,6 @@
   gtag('js', new Date());
   gtag('config', 'G-X88JFGBX37');
 </script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101827">
@@ -26,6 +23,7 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 @media(max-width:600px){.wrap{width:min(100% - 28px,1180px)}.topbar .wrap{font-size:9px}.brand{min-width:0}.brand strong{font-size:12px}.brand small{font-size:9px}.hero-inner{padding:46px 0}.hero h1{font-size:47px}.hero p{font-size:14px}.hero-card{padding:17px}.club-mark{width:54px;height:54px}.statgrid{grid-template-columns:1fr 1fr}.statbox{border-bottom:1px solid var(--line)}.statbox:nth-child(2){border-right:0}.statbox:nth-child(3){padding-left:0;border-bottom:0}.statbox:nth-child(4){border:0;border-bottom:0}.statbox strong{font-size:24px}section{padding:55px 0}.section-head{align-items:flex-start;flex-direction:column}.team-grid{grid-template-columns:1fr 1fr;gap:9px}.team-card{padding:14px}.team-card h3{font-size:14px}.team-card p{font-size:11px}.team-logo{width:40px;height:40px}.schedule-list{grid-template-columns:1fr}.news-grid{grid-template-columns:1fr}.news-card:first-child{grid-column:auto}.timeline{grid-template-columns:1fr 1fr}.playoff-grid{grid-template-columns:1fr}.sponsor-wrap{padding:20px}.footer-inner{align-items:flex-start;flex-direction:column}.match-note{font-size:10px}}
 
 .history-awards{margin-top:36px}.history-awards .section-head{margin-bottom:16px}.history-awards .section-head h2{color:#fff}.awards-section .panel{margin-top:16px}.player-profile-link{color:#b72d37;font-weight:700;text-decoration:underline;text-underline-offset:3px}.player-profile-link:hover{color:#142036}
+.standings-team-link{font-weight:800;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px;transition:color .15s,text-decoration-color .15s}.standings-team-link:hover,.standings-team-link:focus-visible{color:var(--red);text-decoration-color:currentColor}.standings-team-link:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 </style>
 </head>
 <body>
@@ -218,11 +216,25 @@ function standingsTeamIcon(teamName){
  const icon=document.createElement('span');icon.className='team-icon'+(style?' '+style:'');icon.textContent=initials;
  return icon;
 }
+// Reuse the same team-page destinations as the Meet the Teams cards.
+// Historical teams without a current roster page remain non-clickable.
+const standingsTeamPages={
+  bowlinggreenbiscuits:'team-biscuits.html',biscuits:'team-biscuits.html',
+  southcentralsluggers:'team-sluggers.html',sluggers:'team-sluggers.html',
+  icecoldpitchers:'team-pitchers.html',pitchers:'team-pitchers.html',
+  goldcitybrewcrew:'team-brew-crew.html',brewcrew:'team-brew-crew.html',
+  curveballers:'team-curve-ballers.html',
+  hammerheads:'team-hammerheads.html'
+};
+function standingsTeamPage(name){
+  const key=String(name||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+  return standingsTeamPages[key]||null;
+}
 function renderStandingsRows(rows){
  const body=document.getElementById('liveStandingsRows');body.replaceChildren();
  if(!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=8;td.textContent='No standings data for this season yet.';tr.append(td);body.append(tr);return;}
  rows.forEach((t,i)=>{const tr=document.createElement('tr'),played=t.w+t.l,diff=t.rf===null||t.ra===null?null:t.rf-t.ra;
-  [String(i+1).padStart(2,'0'),t.name,t.w,t.l,played?(t.w/played).toFixed(3):'.000',t.rf===null?'—':t.rf,t.ra===null?'—':t.ra,diff===null?'—':(diff>0?'+':'')+diff].forEach((v,j)=>{const td=document.createElement('td');if(j===1){const cell=document.createElement('div');cell.className='teamcell';cell.append(standingsTeamIcon(t.name));const label=document.createElement('span');label.textContent=standingsEscape(t.name);cell.append(label);td.append(cell);}else td.textContent=standingsEscape(v);if(j>=2)td.className='num';tr.append(td)});body.append(tr);
+  [String(i+1).padStart(2,'0'),t.name,t.w,t.l,played?(t.w/played).toFixed(3):'.000',t.rf===null?'—':t.rf,t.ra===null?'—':t.ra,diff===null?'—':(diff>0?'+':'')+diff].forEach((v,j)=>{const td=document.createElement('td');if(j===1){const cell=document.createElement('div');cell.className='teamcell';cell.append(standingsTeamIcon(t.name));const href=standingsTeamPage(t.name);const label=document.createElement(href?'a':'span');label.textContent=standingsEscape(t.name);if(href){label.href=href;label.className='standings-team-link';label.title='View '+t.name+' team roster';}cell.append(label);td.append(cell);}else td.textContent=standingsEscape(v);if(j>=2)td.className='num';tr.append(td)});body.append(tr);
  });
 }
 function sortStandings(rows){return rows.sort((a,b)=>(a.position&&b.position?a.position-b.position:0)||((b.w/(b.w+b.l)||0)-(a.w/(a.w+a.l)||0))||b.w-a.w||((b.rf-b.ra)-(a.rf-a.ra))||b.rf-a.rf||a.name.localeCompare(b.name));}
