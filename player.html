@@ -63,7 +63,8 @@ for(const [key] of fields){const value=key==='AVG'?formatAvg(totalH,totalAB):key
 foot.append(totalRow);t.append(foot);target.append(t)}
 function renderAccolades(player){
  const target=$('accoladesGrid');target.replaceChildren();
- if(!player){const msg=document.createElement('p');msg.className='message';msg.textContent='Career accolades unavailable: player not found in the current roster.';target.append(msg);return;}
+ // Missing player records and blank accolade fields display zero.
+ player=player||{};
  const items=[['⭐','All-Star Selections','allStarSelections'],['🏆','Championship Appearances','championshipAppearances'],['🥇','Championship Wins','championshipsWon']];
  for(const [symbol,label,key] of items){const card=document.createElement('div');card.className='accolade';const icon=document.createElement('div');icon.className='symbol';icon.textContent=symbol;const count=document.createElement('b');count.textContent=String(Math.max(0,Number(player[key])||0));const caption=document.createElement('small');caption.textContent=label;card.append(icon,count,caption);target.append(card)}
 }
