@@ -79,6 +79,20 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 .video-subscribe{display:inline-flex;justify-content:center;align-items:center;background:#e23d45;color:white;font-size:13px;font-weight:900;padding:13px 16px;border-radius:9px}
 .video-subscribe:hover{background:#f45c64}
 @media(max-width:800px){.video-layout{grid-template-columns:1fr}}
+
+/* Official 2027 expansion-team logos */
+.team-logo.expansion-logo{background:transparent!important;color:inherit!important;overflow:visible;box-shadow:none}
+.team-logo.expansion-logo img{display:block;width:100%;height:100%;object-fit:contain}
+.team-icon.expansion-logo{background:transparent!important;overflow:visible;border-radius:0}
+.team-icon.expansion-logo img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* All ten SWL clubs: show official marks instead of initials */
+.team-logo.official-logo,.team-icon.official-logo{background:transparent!important;color:var(--navy);overflow:visible;display:grid;place-items:center}
+.team-logo.official-logo img,.team-icon.official-logo img{display:block;width:100%;height:100%;object-fit:contain}
+.team-logo.official-logo{width:62px;height:62px}
+.team-icon.official-logo{width:34px;height:34px;flex:0 0 34px}
+@media(max-width:600px){.team-logo.official-logo{width:48px;height:48px}}
+.team-logo:has(img){background:transparent!important;overflow:visible}.team-logo img{width:100%;height:100%;object-fit:contain}
 </style>
 </head>
 <body>
@@ -109,16 +123,16 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 
 <section id="teams" style="background:#fdfbf6"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Know your club</div><h2>Meet the Teams</h2></div><p>Ten teams. One league. Explore the clubs competing in the Sandlot Wiffle Ball League.</p></div>
 <div class="team-grid">
-<a class="team-card team-card-link" href="team-biscuits.html" aria-label="View Biscuits roster"><div class="team-top"><div class="team-logo biscuits"><img src="biscuits-logo.png" alt="Bowling Green Biscuits official BG logo" class="biscuits-official-logo"></div><span class="pill" style="background:#ffe5e5;color:#b52b33">RUNNERS-UP</span></div><h3>Biscuits</h3><p>Power bats and a proud history in the league.</p><div class="team-meta"><span>2026 record</span><b>11–4</b></div></a>
-<a class="team-card team-card-link" href="team-sluggers.html" aria-label="View Southcentral Sluggers roster"><div class="team-top"><div class="team-logo sluggers"><img src="sluggers-logo-web.png" alt="Southcentral Sluggers official logo" class="sluggers-official-logo"></div><span class="pill" style="background:#e3f4e9;color:#22664c">CHAMPIONS</span></div><h3>Southcentral Sluggers</h3><p>Championship pedigree and a comeback for the ages.</p><div class="team-meta"><span>2026 record</span><b>9–6</b></div></a>
-<a class="team-card team-card-link" href="team-pitchers.html" aria-label="View Ice Cold Pitchers roster"><div class="team-top"><div class="team-logo icp">ICP</div><span class="pill" style="background:#fff0cd;color:#825b0d">FINALISTS</span></div><h3>Ice Cold Pitchers</h3><p>Regular-season leaders who pushed the final to five.</p><div class="team-meta"><span>2026 record</span><b>12–3</b></div></a>
-<a class="team-card team-card-link" href="team-brew-crew.html" aria-label="View Brew Crew roster"><div class="team-top"><div class="team-logo brewcrew">BC</div><span class="pill">FOUNDING CLUB</span></div><h3>Brew Crew</h3><p>One of the original four franchises from 2022.</p><div class="team-meta"><span>2026 record</span><b>Not listed</b></div></a>
-<a class="team-card team-card-link" href="team-curve-ballers.html" aria-label="View Curve Ballers roster"><div class="team-top"><div class="team-logo curve"><img src="curveballers-logo.png" alt="Curve Ballers official logo" class="curveballers-official-logo" onerror="this.style.display='none';this.parentElement.textContent='CB'"></div><span class="pill">EXPANSION ERA</span></div><h3>Curve Ballers</h3><p>A 2026 expansion-era club that reached the semifinals.</p><div class="team-meta"><span>2026 record</span><b>6–9</b></div></a>
-<a class="team-card team-card-link" href="team-hammerheads.html" aria-label="View Hammerheads roster"><div class="team-top"><div class="team-logo hammerheads"><img src="hammerheads-logo.png" alt="Hammerheads official logo" class="hammerheads-official-logo" onerror="this.style.display='none';this.parentElement.textContent='HH'"></div><span class="pill">NEW LOOK</span></div><h3>Hammerheads</h3><p>Part of the league's refreshed six-team lineup in 2026.</p><div class="team-meta"><span>2026 record</span><b>Not listed</b></div></a>
-<a class="team-card team-card-link" href="team-flamingos.html" aria-label="View Flamingos roster"><div class="team-top"><div class="team-logo" style="background:#f5a0bd;color:#172338">FL</div><span class="pill">NEW TEAM</span></div><h3>Flamingos</h3><p>Meet the Flamingos and explore their player roster.</p><div class="team-meta"><span>2027 season</span><b>View roster →</b></div></a>
-<a class="team-card team-card-link" href="team-vipers.html" aria-label="View Vipers roster"><div class="team-top"><div class="team-logo" style="background:#58b969;color:#101827">VP</div><span class="pill">NEW TEAM</span></div><h3>Vipers</h3><p>Meet the Vipers and explore their player roster.</p><div class="team-meta"><span>2027 season</span><b>View roster →</b></div></a>
-<a class="team-card team-card-link" href="team-searobbers.html" aria-label="View Sea Robbers roster"><div class="team-top"><div class="team-logo" style="background:#173451;color:#e8b85b">SR</div><span class="pill">NEW TEAM</span></div><h3>Sea Robbers</h3><p>Meet the Sea Robbers and explore their player roster.</p><div class="team-meta"><span>2027 season</span><b>View roster →</b></div></a>
-<a class="team-card team-card-link" href="team-peacocks.html" aria-label="View Peacocks roster"><div class="team-top"><div class="team-logo" style="background:#145c76;color:#f9dc71">PC</div><span class="pill">NEW TEAM</span></div><h3>Peacocks</h3><p>Meet the Peacocks and explore their player roster.</p><div class="team-meta"><span>2027 season</span><b>View roster →</b></div></a>
+<a class="team-card team-card-link" href="team-biscuits.html" aria-label="View Biscuits roster"><div class="team-top"><div class="team-logo biscuits official-logo"><img src="biscuits-logo.png" alt="Bowling Green Biscuits official BG logo" class="biscuits-official-logo"></div><span class="pill" style="background:#ffe5e5;color:#b52b33">RUNNERS-UP</span></div><h3>Biscuits</h3><p>Power bats and a proud history in the league.</p><div class="team-meta"><span>2026 record</span><b>11–4</b></div></a>
+<a class="team-card team-card-link" href="team-sluggers.html" aria-label="View Southcentral Sluggers roster"><div class="team-top"><div class="team-logo sluggers official-logo"><img src="sluggers-logo-web.png" alt="Southcentral Sluggers official logo" class="sluggers-official-logo"></div><span class="pill" style="background:#e3f4e9;color:#22664c">CHAMPIONS</span></div><h3>Southcentral Sluggers</h3><p>Championship pedigree and a comeback for the ages.</p><div class="team-meta"><span>2026 record</span><b>9–6</b></div></a>
+<a class="team-card team-card-link" href="team-pitchers.html" aria-label="View Ice Cold Pitchers roster"><div class="team-top"><div class="team-logo icp official-logo"><img src="pitchers-logo.png" alt="Ice Cold Pitchers official logo" loading="lazy" onerror="this.remove();this.parentElement.textContent='ICP'"></div><span class="pill" style="background:#fff0cd;color:#825b0d">FINALISTS</span></div><h3>Ice Cold Pitchers</h3><p>Regular-season leaders who pushed the final to five.</p><div class="team-meta"><span>2026 record</span><b>12–3</b></div></a>
+<a class="team-card team-card-link" href="team-brew-crew.html" aria-label="View Brew Crew roster"><div class="team-top"><div class="team-logo brewcrew official-logo"><img src="brewcrew-logo.png" alt="Gold City Brew Crew official logo" loading="lazy" onerror="this.remove();this.parentElement.textContent='BC'"></div><span class="pill">FOUNDING CLUB</span></div><h3>Brew Crew</h3><p>One of the original four franchises from 2022.</p><div class="team-meta"><span>2026 record</span><b>Not listed</b></div></a>
+<a class="team-card team-card-link" href="team-curve-ballers.html" aria-label="View Curve Ballers roster"><div class="team-top"><div class="team-logo curve official-logo"><img src="curveballers-logo.png" alt="Curve Ballers official logo" class="curveballers-official-logo" onerror="this.style.display='none';this.parentElement.textContent='CB'"></div><span class="pill">EXPANSION ERA</span></div><h3>Curve Ballers</h3><p>A 2026 expansion-era club that reached the semifinals.</p><div class="team-meta"><span>2026 record</span><b>6–9</b></div></a>
+<a class="team-card team-card-link" href="team-hammerheads.html" aria-label="View Hammerheads roster"><div class="team-top"><div class="team-logo hammerheads official-logo"><img src="hammerheads-logo.png" alt="Hammerheads official logo" class="hammerheads-official-logo" onerror="this.style.display='none';this.parentElement.textContent='HH'"></div><span class="pill">NEW LOOK</span></div><h3>Hammerheads</h3><p>Part of the league's refreshed six-team lineup in 2026.</p><div class="team-meta"><span>2026 record</span><b>Not listed</b></div></a>
+<a class="team-card team-card-link" href="team-flamingos.html" aria-label="View Flamingos roster"><div class="team-top"><div class="team-logo expansion-logo official-logo"><img src="flamingos-logo.png" alt="Flamingos official logo" onerror="this.parentElement.textContent='FL'"></div><span class="pill">NEW TEAM</span></div><h3>Flamingos</h3><p>Meet the Flamingos and explore their player roster.</p><div class="team-meta"><span>2027 season</span><b>View roster →</b></div></a>
+<a class="team-card team-card-link" href="team-vipers.html" aria-label="View Vipers roster"><div class="team-top"><div class="team-logo expansion-logo official-logo"><img src="vipers-logo.png" alt="Vipers official logo" onerror="this.parentElement.textContent='VP'"></div><span class="pill">NEW TEAM</span></div><h3>Vipers</h3><p>Meet the Vipers and explore their player roster.</p><div class="team-meta"><span>2027 season</span><b>View roster →</b></div></a>
+<a class="team-card team-card-link" href="team-searobbers.html" aria-label="View Sea Robbers roster"><div class="team-top"><div class="team-logo expansion-logo official-logo"><img src="searobbers-logo.png" alt="Sea Robbers official logo" onerror="this.parentElement.textContent='SR'"></div><span class="pill">NEW TEAM</span></div><h3>Sea Robbers</h3><p>Meet the Sea Robbers and explore their player roster.</p><div class="team-meta"><span>2027 season</span><b>View roster →</b></div></a>
+<a class="team-card team-card-link" href="team-peacocks.html" aria-label="View Peacocks roster"><div class="team-top"><div class="team-logo expansion-logo official-logo"><img src="peacocks-logo.png" alt="Peacocks official logo" onerror="this.parentElement.textContent='PC'"></div><span class="pill">NEW TEAM</span></div><h3>Peacocks</h3><p>Meet the Peacocks and explore their player roster.</p><div class="team-meta"><span>2027 season</span><b>View roster →</b></div></a>
 </div><p class="muted" style="font-size:11px;margin-top:16px">Select any team to view its roster. Player information updates from GameCenter as rosters are entered.</p></div></section>
 
 <section id="schedule"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Mark your calendar</div><h2>Schedule & Results</h2></div><p>The 2026 season has concluded. Key postseason results are below; regular-season game-by-game dates were not included in the supplied data.</p></div>
@@ -293,22 +307,29 @@ const SWL_HISTORICAL_STANDINGS={
 const standingsEscape=x=>String(x??'');
 function standingsTeamIcon(teamName){
  const key=String(teamName||'').toLowerCase().replace(/[^a-z0-9]/g,'');
- const known={
-  icecoldpitchers:['icp','ICP'],pitchers:['icp','ICP'],
-  bowlinggreenbiscuits:['biscuits','BIS'],biscuits:['biscuits','BIS'],
-  southcentralsluggers:['sluggers','SS'],sluggers:['sluggers','SS'],
-  curveballers:['curve','CB'],
-  goldcitybrewcrew:['brewcrew','BC'],brewcrew:['brewcrew','BC'],
-  hammerheads:['hammerheads','HH'],
-  flamingos:['flamingos','FL'],vipers:['vipers','VP'],
-  searobbers:['searobbers','SR'],peacocks:['peacocks','PC'],
-  southernkentuckypigeons:['blue','PIG'],pigeons:['blue','PIG'],
-  outlaws:['outlaws','OUT'],motorcityoutlaws:['outlaws','OUT'],underdawgz:['underdawgz','UD'],westernkentuckyunderdawgz:['underdawgz','UD'],hustlers:['gold','HUS'],
-  warrencounty:['blue','WC'],bowlinggreen:['biscuits','BG']
+ const logoMap={
+  bowlinggreenbiscuits:['biscuits-logo.png','BIS'],biscuits:['biscuits-logo.png','BIS'],
+  southcentralsluggers:['sluggers-logo-web.png','SS'],sluggers:['sluggers-logo-web.png','SS'],
+  icecoldpitchers:['pitchers-logo.png','ICP'],pitchers:['pitchers-logo.png','ICP'],
+  goldcitybrewcrew:['brewcrew-logo.png','BC'],brewcrew:['brewcrew-logo.png','BC'],
+  curveballers:['curveballers-logo.png','CB'],
+  hammerheads:['hammerheads-logo.png','HH'],
+  flamingos:['flamingos-logo.png','FL'],flamingo:['flamingos-logo.png','FL'],
+  vipers:['vipers-logo.png','VP'],viper:['vipers-logo.png','VP'],
+  searobbers:['searobbers-logo.png','SR'],searobber:['searobbers-logo.png','SR'],
+  peacocks:['peacocks-logo.png','PC'],peacock:['peacocks-logo.png','PC']
  };
- const [style,initials]=known[key]||['',String(teamName||'').trim().split(/\s+/).map(w=>w[0]||'').join('').slice(0,3).toUpperCase()];
- const icon=document.createElement('span');icon.className='team-icon'+(style?' '+style:'');
- if(key==='hammerheads'||key==='curveballers'){const img=document.createElement('img');const isCurve=key==='curveballers';img.src=isCurve?'curveballers-logo.png':'hammerheads-logo.png';img.alt=isCurve?'Curve Ballers official logo':'Hammerheads official logo';img.className=isCurve?'curveballers-official-logo':'hammerheads-official-logo';img.onerror=()=>{icon.textContent=isCurve?'CB':'HH'};icon.append(img);}else{ if(key==='bowlinggreenbiscuits'||key==='biscuits'||key==='southcentralsluggers'||key==='sluggers'){const isSluggers=key==='southcentralsluggers'||key==='sluggers';const img=document.createElement('img');img.src=isSluggers?'sluggers-logo-web.png':'biscuits-logo.png';img.alt=isSluggers?'Southcentral Sluggers official logo':'Bowling Green Biscuits logo';img.className=isSluggers?'sluggers-official-logo':'biscuits-official-logo';icon.append(img);}else{icon.textContent=initials;} }
+ const icon=document.createElement('span');
+ icon.className='team-icon official-logo';
+ const entry=logoMap[key];
+ if(entry){
+  const img=document.createElement('img');
+  img.src=entry[0];img.alt=teamName+' official logo';img.loading='lazy';
+  img.onerror=()=>{img.remove();icon.textContent=entry[1]};
+  icon.append(img);
+ }else{
+  icon.textContent=String(teamName||'').trim().split(/\s+/).map(w=>w[0]||'').join('').slice(0,3).toUpperCase();
+ }
  return icon;
 }
 // Reuse the same team-page destinations as the Meet the Teams cards.
@@ -320,10 +341,10 @@ const standingsTeamPages={
   goldcitybrewcrew:'team-brew-crew.html',brewcrew:'team-brew-crew.html',
   curveballers:'team-curve-ballers.html',
   hammerheads:'team-hammerheads.html',
-  flamingos:'team-flamingos.html',
-  vipers:'team-vipers.html',
-  searobbers:'team-searobbers.html',
-  peacocks:'team-peacocks.html'
+  flamingos:'team-flamingos.html',flamingo:'team-flamingos.html',
+  vipers:'team-vipers.html',viper:'team-vipers.html',
+  searobbers:'team-searobbers.html',searobber:'team-searobbers.html',
+  peacocks:'team-peacocks.html',peacock:'team-peacocks.html'
 };
 function standingsTeamPage(name){
   const key=String(name||'').toLowerCase().replace(/[^a-z0-9]/g,'');
