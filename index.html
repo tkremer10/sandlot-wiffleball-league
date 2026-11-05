@@ -24,6 +24,15 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 
 .history-awards{margin-top:36px}.history-awards .section-head{margin-bottom:16px}.history-awards .section-head h2{color:#fff}.awards-section .panel{margin-top:16px}.player-profile-link{color:#b72d37;font-weight:700;text-decoration:underline;text-underline-offset:3px}.player-profile-link:hover{color:#142036}
 .standings-team-link{font-weight:800;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:3px;transition:color .15s,text-decoration-color .15s}.standings-team-link:hover,.standings-team-link:focus-visible{color:var(--red);text-decoration-color:currentColor}.standings-team-link:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* Official jersey provider: homepage hero */
+.hero-partner-stack{display:flex;flex-direction:column;gap:15px;min-width:0}
+.jersey-provider-link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;padding:17px 20px;border-radius:16px;background:#fff;color:#101827;border:1px solid #ffffff55;box-shadow:0 16px 38px #0002;text-align:center;transition:transform .2s ease,box-shadow .2s ease}
+.jersey-provider-link:hover,.jersey-provider-link:focus-visible{transform:translateY(-2px);box-shadow:0 20px 42px #0004;outline-offset:3px}
+.jersey-provider-label{font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#3c4760}
+.jersey-provider-logo{display:block;width:min(100%,340px);height:auto;max-height:83px;object-fit:contain}
+.jersey-provider-visit{font-size:11px;font-weight:800;color:#2836f2;letter-spacing:.03em}
+@media(max-width:900px){.hero-partner-stack{max-width:500px;width:100%}}
 </style>
 </head>
 <body>
@@ -36,7 +45,14 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <main id="home">
 <section class="hero"><div class="wrap hero-inner">
 <div><div class="eyebrow">The official home of the SWL</div><h1>SMALL FIELD.<br><em>BIG LEAGUE</em><br>ENERGY.</h1><p>Built on big swings, fierce rivalries, and a love for the game. Follow the Sandlot Wiffle Ball League for the latest standings, player stats, postseason drama, and league history.</p><div class="actions"><a class="btn red" href="#standings">VIEW THE STANDINGS ↗</a><a class="btn ghost" href="#teams">MEET THE TEAMS</a></div></div>
+<div class="hero-partner-stack">
+<a class="jersey-provider-link" href="https://www.unifungo.com/" target="_blank" rel="noopener noreferrer" aria-label="UNIFUNGO Sports, Official SWL Jersey Provider — visit website">
+<span class="jersey-provider-label">Official SWL Jersey Provider</span>
+<img class="jersey-provider-logo" src="unifungo-logo.jpg" alt="UNIFUNGO Sports logo" width="2048" height="338" loading="eager">
+<span class="jersey-provider-visit">VISIT UNIFUNGO SPORTS ↗</span>
+</a>
 <div class="hero-card"><div class="hero-card-head"><span>2026 Championship · Final</span><span class="pill">COMPLETE</span></div><div class="matchup"><div class="club"><div class="club-mark sluggers">SS</div><b>Southcentral Sluggers</b></div><div class="versus">VS</div><div class="club"><div class="club-mark pitch">ICP</div><b>Ice Cold Pitchers</b></div></div><div class="match-note"><span>Best-of-five series</span><span>Sluggers win 3–2</span></div><div style="display:flex;justify-content:space-between;gap:12px;margin-top:18px"><div><div style="font-size:10px;color:#aab4c4;text-transform:uppercase;letter-spacing:.12em">Championship MVP</div><strong style="display:block;font-size:20px;margin-top:3px">Ian Schrock</strong></div><div style="text-align:right"><div style="font-size:10px;color:#aab4c4;text-transform:uppercase;letter-spacing:.12em">Title story</div><strong style="display:block;font-size:13px;margin-top:5px;color:var(--gold)">Reverse sweep</strong></div></div></div>
+</div>
 </div></section>
 <div class="stats-strip"><div class="wrap statgrid"><div class="statbox"><strong>2022</strong><span>League founded</span></div><div class="statbox"><strong>6</strong><span>2026 teams</span></div><div class="statbox"><strong>5</strong><span>Championship games · 2026</span></div><div class="statbox"><strong>1</strong><span>Community. One league.</span></div></div></div>
 
