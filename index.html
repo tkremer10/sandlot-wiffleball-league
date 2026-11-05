@@ -145,7 +145,7 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 </div></div></section>
 
 
-<!-- SWL VIDEO CENTER: replace FEATURED_VIDEO_URL in the script below with an SWL video link to activate the embedded player. -->
+<!-- SWL VIDEO CENTER: automatically plays the channel uploads playlist, newest upload first. -->
 <section id="videos" class="video-center"><div class="wrap">
   <div class="section-head"><div><div class="section-kicker">Watch the action</div><h2>SWL Video Center</h2></div><p>Full games, big moments, and the road to the championship — straight from the official SWL YouTube channel.</p></div>
   <div class="video-layout">
@@ -154,10 +154,10 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
         <div class="video-poster" id="swlVideoPoster">
           <button class="video-play" type="button" id="swlVideoPlay" aria-label="Watch featured SWL video" hidden>▶</button>
           <div class="video-poster-title">SWL ON YOUTUBE</div>
-          <div class="video-poster-caption" id="swlVideoCaption">Featured game coming soon · Browse our official videos below</div>
+          <div class="video-poster-caption" id="swlVideoCaption">Play the newest SWL upload</div>
         </div>
       </div>
-      <div class="video-feature-body"><div class="section-kicker">Featured broadcast</div><h3 id="swlFeaturedTitle">Watch Sandlot Wiffle Ball</h3><p>Follow the action on our official YouTube channel. Featured videos play here on the website when configured.</p></div>
+      <div class="video-feature-body"><div class="section-kicker">Latest upload</div><h3 id="swlFeaturedTitle">Latest SWL Video</h3><p>Watch the newest public upload from our official YouTube channel. The playlist automatically updates when we publish a new video.</p></div>
     </div>
     <aside class="video-side"><div><div class="section-kicker">More from the league</div><h3>Every swing. Every moment.</h3><p>Catch the latest uploads, browse the archive, or watch the league's Shorts without leaving your favorite channel behind.</p></div>
       <div class="video-quicklinks">
@@ -382,29 +382,27 @@ loadLiveStandings();setInterval(loadLiveStandings,60000);
 </script>
 
 <script>
-// Paste an actual SWL video URL here, for example:
-// const FEATURED_VIDEO_URL = 'https://www.youtube.com/watch?v=YOUR_VIDEO_ID';
-// Leave blank until you choose a featured upload. No API calls are made.
-const FEATURED_VIDEO_URL = '';
-(function setupSwlVideo(){
-  const match=FEATURED_VIDEO_URL.trim().match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
-  if(!match)return;
-  const id=match[1];
+/* SWL automatic latest-upload player.
+   YouTube uploads playlist = UU + channel ID without its leading UC.
+   Channel: UCOSGqfpgv-WbQoB8dedkUPg
+   Playlist: UUOSGqfpgv-WbQoB8dedkUPg
+   YouTube maintains this playlist automatically (newest first).
+   Player is loaded only after a click, to keep the homepage fast.
+*/
+(function setupSwlLatestVideo(){
+  const uploadsPlaylist='UUOSGqfpgv-WbQoB8dedkUPg';
   const btn=document.getElementById('swlVideoPlay');
   const caption=document.getElementById('swlVideoCaption');
   const stage=document.getElementById('swlVideoStage');
-  const poster=document.getElementById('swlVideoPoster');
   const title=document.getElementById('swlFeaturedTitle');
+  if(!btn||!caption||!stage||!title)return;
   btn.hidden=false;
-  caption.textContent='Click play to watch here on the SWL website';
-  title.textContent='Featured SWL Video';
-  poster.style.backgroundImage='linear-gradient(#10182755,#101827aa),url(https://i.ytimg.com/vi/'+id+'/hqdefault.jpg)';
-  poster.style.backgroundSize='cover';
-  poster.style.backgroundPosition='center';
+  caption.textContent='Play the latest SWL video';
+  title.textContent='Latest SWL Video';
   btn.addEventListener('click',()=>{
     const iframe=document.createElement('iframe');
-    iframe.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';
-    iframe.title='Featured Sandlot Wiffle Ball League video';
+    iframe.src='https://www.youtube-nocookie.com/embed/videoseries?list='+encodeURIComponent(uploadsPlaylist)+'&autoplay=1&rel=0';
+    iframe.title='SWL newest YouTube uploads';
     iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
     iframe.allowFullscreen=true;
     iframe.referrerPolicy='strict-origin-when-cross-origin';
