@@ -50,13 +50,38 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 /* Official Curve Ballers branding */
 .team-icon.curve,.team-logo.curve{background:transparent;color:inherit;overflow:visible}
 .curveballers-official-logo{display:block;width:100%;height:100%;object-fit:contain}
+
+/* SWL Video Center — no YouTube scripts or iframes until a video is played */
+.video-center{background:#101827;color:#fff;position:relative;overflow:hidden}
+.video-center .section-head p{color:#b9c5d6}
+.video-center .section-kicker{color:#ff686e}
+.video-layout{display:grid;grid-template-columns:1.55fr 1fr;gap:20px}
+.video-feature,.video-side{border:1px solid #ffffff24;background:#ffffff0a;border-radius:16px;overflow:hidden}
+.video-stage{aspect-ratio:16/9;background:linear-gradient(130deg,#263c60,#0b111c);position:relative;display:grid;place-items:center}
+.video-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-stage .video-poster{display:grid;place-items:center;gap:12px;padding:20px;text-align:center;width:100%;height:100%;background:radial-gradient(circle at 75% 30%,#e23d4530,transparent 45%),repeating-linear-gradient(135deg,transparent 0 38px,#ffffff05 39px 41px)}
+.video-play{display:grid;place-items:center;width:75px;height:75px;border:2px solid #ffffff77;border-radius:50%;background:#e23d45;color:white;font-size:30px;box-shadow:0 10px 40px #0005}
+.video-play:hover,.video-play:focus-visible{background:#ff5962;transform:scale(1.04)}
+.video-poster-title{font-weight:950;font-size:clamp(20px,3vw,32px);letter-spacing:-.04em}
+.video-poster-caption{color:#c5ceda;font-size:12px}
+.video-feature-body{padding:20px 22px}
+.video-feature-body h3{margin:6px 0;font-size:21px}
+.video-feature-body p,.video-side p{color:#bac4d4;font-size:12px;line-height:1.6}
+.video-side{padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.video-side h3{font-size:24px;letter-spacing:-.04em;margin:6px 0 10px}
+.video-quicklinks{display:grid;gap:10px}
+.video-quicklinks a{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #ffffff28;border-radius:10px;padding:13px 15px;font-size:13px;font-weight:800;background:#ffffff0a}
+.video-quicklinks a:hover{background:#ffffff1b;border-color:#ffffff66}
+.video-subscribe{display:inline-flex;justify-content:center;align-items:center;background:#e23d45;color:white;font-size:13px;font-weight:900;padding:13px 16px;border-radius:9px}
+.video-subscribe:hover{background:#f45c64}
+@media(max-width:800px){.video-layout{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="topbar"><div class="wrap"><span><i class="live-dot"></i>Official League Headquarters</span><span>Play hard. Play fair. Play Sandlot.</span></div></div>
 <header class="header"><div class="wrap nav">
 <a class="brand" href="#home" aria-label="SWL home"><div class="logo"><img src="swl-logo.png" alt="SWL official logo" width="130" height="68"></div><div><strong>SANDLOT WIFFLE BALL</strong><small>LEAGUE · EST. 2022</small></div></a>
-<nav class="navlinks" id="navlinks"><a href="#standings">Standings</a><a href="#teams">Teams</a><a href="#schedule">Schedule</a><a href="#stats">Stats</a><a href="#playoffs">Playoffs</a><a href="history.html">History</a><a href="/gamecenter/">GameCenter</a><a href="#sponsors">Sponsors</a></nav>
+<nav class="navlinks" id="navlinks"><a href="#standings">Standings</a><a href="#teams">Teams</a><a href="#schedule">Schedule</a><a href="#videos">Videos</a><a href="#stats">Stats</a><a href="#playoffs">Playoffs</a><a href="history.html">History</a><a href="/gamecenter/">GameCenter</a><a href="#sponsors">Sponsors</a></nav>
 <div class="nav-actions"><a class="nav-cta join-cta" href="#join">JOIN THE LEAGUE ↗</a><a class="nav-cta" href="#sponsors">SPONSOR SWL ↗</a></div><button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰ Menu</button>
 </div></header>
 <main id="home">
@@ -118,6 +143,32 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <div class="panel bracket"><h3>Semifinals</h3><div class="round-label">Series A · Best of 3</div><div class="bracket-game"><div class="bracket-team"><span>Biscuits</span><span class="score">1 win</span></div><div class="bracket-team winner"><span>Southcentral Sluggers</span><span class="score">2 wins</span></div></div><div class="round-label">Series B · Best of 3</div><div class="bracket-game"><div class="bracket-team"><span>Curve Ballers</span><span class="score">0 wins</span></div><div class="bracket-team winner"><span>Ice Cold Pitchers</span><span class="score">2 wins</span></div></div></div>
 <div class="panel bracket"><h3>Championship · Best of 5</h3><div class="round-label">First to 3 wins</div><div class="bracket-game"><div class="bracket-team"><span>Ice Cold Pitchers</span><span class="score">G1: 10–7</span></div><div class="bracket-team winner"><span>Southcentral Sluggers</span><span class="score">G1: 7–10</span></div></div><div class="bracket-game"><div class="bracket-team"><span>Ice Cold Pitchers</span><span class="score">G2: 9–8</span></div><div class="bracket-team winner"><span>Southcentral Sluggers</span><span class="score">G2: 8–9</span></div></div><div class="bracket-game"><div class="bracket-team winner"><span>Southcentral Sluggers</span><span class="score">G3: 8–6</span></div><div class="bracket-team"><span>Ice Cold Pitchers</span><span class="score">G3: 6–8</span></div></div><div class="bracket-game"><div class="bracket-team winner"><span>Southcentral Sluggers</span><span class="score">G4: 10–2</span></div><div class="bracket-team"><span>Ice Cold Pitchers</span><span class="score">G4: 2–10</span></div></div><div class="bracket-game"><div class="bracket-team winner"><span>Southcentral Sluggers</span><span class="score">G5: 12–5</span></div><div class="bracket-team"><span>Ice Cold Pitchers</span><span class="score">G5: 5–12</span></div></div><div style="background:#fff6dc;border-radius:9px;padding:12px;font-size:12px"><b>🏆 2026 Champions: Southcentral Sluggers</b><br><span class="muted">Championship MVP: Ian Schrock</span></div></div>
 </div></div></section>
+
+
+<!-- SWL VIDEO CENTER: replace FEATURED_VIDEO_URL in the script below with an SWL video link to activate the embedded player. -->
+<section id="videos" class="video-center"><div class="wrap">
+  <div class="section-head"><div><div class="section-kicker">Watch the action</div><h2>SWL Video Center</h2></div><p>Full games, big moments, and the road to the championship — straight from the official SWL YouTube channel.</p></div>
+  <div class="video-layout">
+    <div class="video-feature">
+      <div class="video-stage" id="swlVideoStage">
+        <div class="video-poster" id="swlVideoPoster">
+          <button class="video-play" type="button" id="swlVideoPlay" aria-label="Watch featured SWL video" hidden>▶</button>
+          <div class="video-poster-title">SWL ON YOUTUBE</div>
+          <div class="video-poster-caption" id="swlVideoCaption">Featured game coming soon · Browse our official videos below</div>
+        </div>
+      </div>
+      <div class="video-feature-body"><div class="section-kicker">Featured broadcast</div><h3 id="swlFeaturedTitle">Watch Sandlot Wiffle Ball</h3><p>Follow the action on our official YouTube channel. Featured videos play here on the website when configured.</p></div>
+    </div>
+    <aside class="video-side"><div><div class="section-kicker">More from the league</div><h3>Every swing. Every moment.</h3><p>Catch the latest uploads, browse the archive, or watch the league's Shorts without leaving your favorite channel behind.</p></div>
+      <div class="video-quicklinks">
+        <a href="https://www.youtube.com/@SandlotWiffleballLeague/videos" target="_blank" rel="noopener noreferrer">Latest videos <span aria-hidden="true">↗</span></a>
+        <a href="https://www.youtube.com/@SandlotWiffleballLeague/playlists" target="_blank" rel="noopener noreferrer">Game archive &amp; playlists <span aria-hidden="true">↗</span></a>
+        <a href="https://www.youtube.com/@SandlotWiffleballLeague/shorts" target="_blank" rel="noopener noreferrer">SWL Shorts <span aria-hidden="true">↗</span></a>
+      </div>
+      <a class="video-subscribe" href="https://www.youtube.com/@SandlotWiffleballLeague?sub_confirmation=1" target="_blank" rel="noopener noreferrer">▶ SUBSCRIBE TO SWL</a>
+    </aside>
+  </div>
+</div></section>
 
 <section id="sponsors"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Support local sports</div><h2>Become an SWL Sponsor</h2></div><p>Help grow community baseball, support local athletes, and put your business in front of players, families, and fans.</p></div>
 <div class="sponsor-wrap"><div><div class="section-kicker">Partner with the league</div><h3>Local businesses.<br>Lasting impact.</h3><p>SWL sponsorships help fund equipment, uniforms, field operations, and league growth. Choose a package or contribute a gift in any amount.</p><a class="btn red" href="mailto:sandlotwiffleball.2022@gmail.com?subject=SWL%20Sponsorship%20Inquiry">DISCUSS A SPONSORSHIP ↗</a><div class="sponsor-logos"><div class="sponsor-placeholder">YOUR LOGO HERE</div><div class="sponsor-placeholder">COMMUNITY PARTNER</div><div class="sponsor-placeholder">LOCAL BUSINESS</div></div></div>
@@ -328,5 +379,37 @@ async function loadLiveStandings(){
 }
 document.getElementById('standingsSeason').addEventListener('change',loadLiveStandings);
 loadLiveStandings();setInterval(loadLiveStandings,60000);
+</script>
+
+<script>
+// Paste an actual SWL video URL here, for example:
+// const FEATURED_VIDEO_URL = 'https://www.youtube.com/watch?v=YOUR_VIDEO_ID';
+// Leave blank until you choose a featured upload. No API calls are made.
+const FEATURED_VIDEO_URL = '';
+(function setupSwlVideo(){
+  const match=FEATURED_VIDEO_URL.trim().match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  if(!match)return;
+  const id=match[1];
+  const btn=document.getElementById('swlVideoPlay');
+  const caption=document.getElementById('swlVideoCaption');
+  const stage=document.getElementById('swlVideoStage');
+  const poster=document.getElementById('swlVideoPoster');
+  const title=document.getElementById('swlFeaturedTitle');
+  btn.hidden=false;
+  caption.textContent='Click play to watch here on the SWL website';
+  title.textContent='Featured SWL Video';
+  poster.style.backgroundImage='linear-gradient(#10182755,#101827aa),url(https://i.ytimg.com/vi/'+id+'/hqdefault.jpg)';
+  poster.style.backgroundSize='cover';
+  poster.style.backgroundPosition='center';
+  btn.addEventListener('click',()=>{
+    const iframe=document.createElement('iframe');
+    iframe.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';
+    iframe.title='Featured Sandlot Wiffle Ball League video';
+    iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen=true;
+    iframe.referrerPolicy='strict-origin-when-cross-origin';
+    stage.replaceChildren(iframe);
+  },{once:true});
+})();
 </script>
 </body></html>
