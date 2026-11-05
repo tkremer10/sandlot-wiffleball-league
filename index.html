@@ -45,6 +45,8 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 .biscuits-official-logo{display:block;width:100%;height:100%;object-fit:contain}
 .team-icon.sluggers,.team-logo.sluggers,.club-mark.sluggers{background:transparent;color:inherit;box-shadow:none;overflow:visible}
 .sluggers-official-logo{display:block;width:100%;height:100%;object-fit:contain}
+.team-icon.hammerheads,.team-logo.hammerheads{background:transparent;color:#17365a;overflow:visible}
+.hammerheads-official-logo{display:block;width:100%;height:100%;object-fit:contain}
 </style>
 </head>
 <body>
@@ -80,7 +82,7 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <a class="team-card team-card-link" href="team-pitchers.html" aria-label="View Ice Cold Pitchers roster"><div class="team-top"><div class="team-logo icp">ICP</div><span class="pill" style="background:#fff0cd;color:#825b0d">FINALISTS</span></div><h3>Ice Cold Pitchers</h3><p>Regular-season leaders who pushed the final to five.</p><div class="team-meta"><span>2026 record</span><b>12–3</b></div></a>
 <a class="team-card team-card-link" href="team-brew-crew.html" aria-label="View Brew Crew roster"><div class="team-top"><div class="team-logo brewcrew">BC</div><span class="pill">FOUNDING CLUB</span></div><h3>Brew Crew</h3><p>One of the original four franchises from 2022.</p><div class="team-meta"><span>2026 record</span><b>Not listed</b></div></a>
 <a class="team-card team-card-link" href="team-curve-ballers.html" aria-label="View Curve Ballers roster"><div class="team-top"><div class="team-logo curve">CB</div><span class="pill">EXPANSION ERA</span></div><h3>Curve Ballers</h3><p>A 2026 expansion-era club that reached the semifinals.</p><div class="team-meta"><span>2026 record</span><b>6–9</b></div></a>
-<a class="team-card team-card-link" href="team-hammerheads.html" aria-label="View Hammerheads roster"><div class="team-top"><div class="team-logo hammerheads">HH</div><span class="pill">NEW LOOK</span></div><h3>Hammerheads</h3><p>Part of the league's refreshed six-team lineup in 2026.</p><div class="team-meta"><span>2026 record</span><b>Not listed</b></div></a>
+<a class="team-card team-card-link" href="team-hammerheads.html" aria-label="View Hammerheads roster"><div class="team-top"><div class="team-logo hammerheads"><img src="hammerheads-logo.png" alt="Hammerheads official logo" class="hammerheads-official-logo" onerror="this.style.display='none';this.parentElement.textContent='HH'"></div><span class="pill">NEW LOOK</span></div><h3>Hammerheads</h3><p>Part of the league's refreshed six-team lineup in 2026.</p><div class="team-meta"><span>2026 record</span><b>Not listed</b></div></a>
 </div><p class="muted" style="font-size:11px;margin-top:16px">Select any team to view its roster. Replace Player 1–Player 6 with official roster names as they are confirmed.</p></div></section>
 
 <section id="schedule"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Mark your calendar</div><h2>Schedule & Results</h2></div><p>The 2026 season has concluded. Key postseason results are below; regular-season game-by-game dates were not included in the supplied data.</p></div>
@@ -242,7 +244,7 @@ function standingsTeamIcon(teamName){
  };
  const [style,initials]=known[key]||['',String(teamName||'').trim().split(/\s+/).map(w=>w[0]||'').join('').slice(0,3).toUpperCase()];
  const icon=document.createElement('span');icon.className='team-icon'+(style?' '+style:'');
- if(key==='bowlinggreenbiscuits'||key==='biscuits'||key==='southcentralsluggers'||key==='sluggers'){const isSluggers=key==='southcentralsluggers'||key==='sluggers';const img=document.createElement('img');img.src=isSluggers?'sluggers-logo-web.png':'biscuits-logo.png';img.alt=isSluggers?'Southcentral Sluggers official logo':'Bowling Green Biscuits logo';img.className=isSluggers?'sluggers-official-logo':'biscuits-official-logo';icon.append(img);}else{icon.textContent=initials;}
+ if(key==='hammerheads'){const img=document.createElement('img');img.src='hammerheads-logo.png';img.alt='Hammerheads official logo';img.className='hammerheads-official-logo';img.onerror=()=>{icon.textContent='HH'};icon.append(img);}else{ if(key==='bowlinggreenbiscuits'||key==='biscuits'||key==='southcentralsluggers'||key==='sluggers'){const isSluggers=key==='southcentralsluggers'||key==='sluggers';const img=document.createElement('img');img.src=isSluggers?'sluggers-logo-web.png':'biscuits-logo.png';img.alt=isSluggers?'Southcentral Sluggers official logo':'Bowling Green Biscuits logo';img.className=isSluggers?'sluggers-official-logo':'biscuits-official-logo';icon.append(img);}else{icon.textContent=initials;} }
  return icon;
 }
 // Reuse the same team-page destinations as the Meet the Teams cards.
