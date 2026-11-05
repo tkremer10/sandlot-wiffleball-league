@@ -9,26 +9,59 @@
 </style></head>
 <body><header class="topbar"><div class="wrap top-inner"><div class="brand">Sandlot Wiffle Ball League</div><a class="back" href="index.html#teams">← Back to All Teams</a></div></header>
 <section class="hero"><div class="wrap hero-inner"><div class="logo">BC</div><div><div class="eyebrow">Official SWL Club · 2026</div><h1>Brew Crew</h1><p>One of the original four franchises from 2022. Explore the current roster below.</p></div></div></section>
-<main class="wrap"><div class="section-head"><div><div class="eyebrow" style="color:#8a93a2">Meet the players</div><h2>Team Roster</h2></div><p>2026 regular-season record: <strong>2—13</strong></p></div><div class="roster">
-<article class="player-card"><div class="player-number">01</div><div><div class="player-label">ROSTER SPOT 1</div><h2>Player 1</h2><p>Player name to be announced</p></div><span class="status">TBD</span></article>
-<article class="player-card"><div class="player-number">02</div><div><div class="player-label">ROSTER SPOT 2</div><h2>Player 2</h2><p>Player name to be announced</p></div><span class="status">TBD</span></article>
-<article class="player-card"><div class="player-number">03</div><div><div class="player-label">ROSTER SPOT 3</div><h2>Player 3</h2><p>Player name to be announced</p></div><span class="status">TBD</span></article>
-<article class="player-card"><div class="player-number">04</div><div><div class="player-label">ROSTER SPOT 4</div><h2>Player 4</h2><p>Player name to be announced</p></div><span class="status">TBD</span></article>
-<article class="player-card"><div class="player-number">05</div><div><div class="player-label">ROSTER SPOT 5</div><h2>Player 5</h2><p>Player name to be announced</p></div><span class="status">TBD</span></article>
-<article class="player-card"><div class="player-number">06</div><div><div class="player-label">ROSTER SPOT 6</div><h2>Player 6</h2><p>Player name to be announced</p></div><span class="status">TBD</span></article>
-</div><div class="note"><strong>Roster placeholders:</strong> Player 1–Player 6 are temporary names. Replace them with the official roster when the team lineup is confirmed.</div></main>
+<main class="wrap"><div class="section-head"><div><div class="eyebrow" style="color:#8a93a2">Meet the players</div><h2>Team Roster</h2></div><p>2026 regular-season record: <strong>2—13</strong></p></div><div class="roster" id="roster" aria-live="polite"><p>Loading current roster…</p></div><div class="note" id="roster-note"><strong>Live roster:</strong> Players are automatically displayed from the SWL Players sheet when marked active. Jersey numbers and hometowns appear when provided.</div></main>
 <footer><div class="wrap"><span>© Sandlot Wiffle Ball League</span><a href="index.html#teams">Return to Meet the Teams ↑</a></div></footer>
 <script>
-// Automatically link confirmed roster names to the shared player profile page.
-// Placeholders remain unlinked. Links use the name-based profile URL.
-document.querySelectorAll('.player-card h2').forEach(heading => {
-  const name = heading.textContent.trim();
-  if (!name || /^Player\s+\d+$/i.test(name) || /^TBD$/i.test(name)) return;
-  const link = document.createElement('a');
-  link.className = 'player-link';
-  link.href = 'player.html?name=' + encodeURIComponent(name);
-  link.textContent = name;
-  heading.replaceChildren(link);
-});
+(() => {
+  'use strict';
+  const API = 'https://swl-gamecenter-api.sandlotwiffleball-2022.workers.dev/api/public';
+  const roster = document.getElementById('roster');
+  const note = document.getElementById('roster-note');
+  const normalize = value => String(value ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const make = (tag, className, value) => {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (value !== undefined) element.textContent = value;
+    return element;
+  };
+  async function loadRoster() {
+    try {
+      const response = await fetch(API, {cache:'no-store'});
+      if (!response.ok) throw new Error('API returned ' + response.status);
+      const data = await response.json();
+      if (!Array.isArray(data.teams) || !Array.isArray(data.players)) throw new Error('Unexpected roster response');
+      const team = data.teams.find(t => normalize(t.name) === [normalize('Brew Crew'),normalize('Gold City Brew Crew')].includes(normalize(t.name)));
+      if (!team) throw new Error('Brew Crew not found in Teams sheet');
+      const players = data.players.filter(p => String(p.teamId) === String(team.id))
+        .sort((a,b) => String(a.name || '').localeCompare(String(b.name || '')));
+      roster.replaceChildren();
+      if (!players.length) {
+        roster.append(make('p', '', 'No active Brew Crew players are currently listed.'));
+        return;
+      }
+      for (const player of players) {
+        const card = make('article','player-card');
+        const number = String(player.number ?? '').trim();
+        card.append(make('div','player-number',number || '—'));
+        const info = make('div');
+        const label = make('div','player-label','ACTIVE ROSTER');
+        const heading = make('h2');
+        const link = make('a','player-link',String(player.name || 'Unnamed player'));
+        link.href = 'player.html?name=' + encodeURIComponent(String(player.name || ''));
+        heading.append(link);
+        info.append(label,heading,make('p','',String(player.hometown || '').trim() || 'Hometown not listed'));
+        card.append(info);
+        if (number) card.append(make('span','status',number));
+        roster.append(card);
+      }
+      note.textContent = players.length + ' active player' + (players.length === 1 ? '' : 's') + ' listed. Roster updates automatically from Google Sheets after the API cache refreshes.';
+    } catch (error) {
+      console.error('Unable to load Brew Crew roster:', error);
+      roster.replaceChildren(make('p','','The live roster could not be loaded right now. Please refresh the page later.'));
+      note.textContent = 'The SWL roster service is temporarily unavailable. No player data has been changed.';
+    }
+  }
+  loadRoster();
+})();
 </script>
 </body></html>
