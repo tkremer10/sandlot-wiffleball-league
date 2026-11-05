@@ -9,27 +9,56 @@
 </style></head>
 <body><header class="topbar"><div class="wrap top-inner"><div class="brand">Sandlot Wiffle Ball League</div><a class="back" href="index.html#teams">← Back to All Teams</a></div></header>
 <section class="hero"><div class="wrap hero-inner"><div class="logo">ICP</div><div><div class="eyebrow">Official SWL Club · 2026</div><h1>Ice Cold Pitchers</h1><p>Regular-season leaders who pushed the final to five. Explore the current roster below.</p></div></div></section>
-<main class="wrap"><div class="section-head"><div><div class="eyebrow" style="color:#8a93a2">Meet the players</div><h2>Team Roster</h2></div><p>2026 regular-season record: <strong>12–3</strong></p></div><div class="roster">
-        <article class="player-card"><div class="player-number">16</div><div><div class="player-label">CAPTAIN</div><h2>Clay Nohel</h2><p>Michigan</p></div><span class="status">16</span></article>
-        <article class="player-card"><div class="player-number">7</div><div><div class="player-label"></div><h2>Mason Biggs</h2><p>Kentucky</p></div><span class="status">7</span></article>
-        <article class="player-card"><div class="player-number">6</div><div><div class="player-label"></div><h2>Adam Burns</h2><p>Kentucky</p></div><span class="status">6</span></article>
-        <article class="player-card"><div class="player-number">3</div><div><div class="player-label"></div><h2>Eli Anderson</h2><p>Kentucky</p></div><span class="status">3</span></article>
-        <article class="player-card"><div class="player-number">8</div><div><div class="player-label"></div><h2>Evan McNaughton</h2><p>Kentucky</p></div><span class="status">8</span></article>
-        <article class="player-card"><div class="player-number">06</div><div><div class="player-label">ROSTER SPOT 6</div><h2>Player 6</h2><p>Player name to be announced</p></div><span class="status">TBD</span></article>
-</div><div class="note"><strong>Roster placeholders:</strong> Player 1–Player 6 are temporary names. Replace them with the official roster when the team lineup is confirmed.</div></main>
+<main class="wrap"><div class="section-head"><div><div class="eyebrow" style="color:#8a93a2">Meet the players</div><h2>Team Roster</h2></div><p>2026 regular-season record: <strong>12–3</strong></p></div><div class="roster" id="roster" aria-live="polite"></div><div class="note" id="roster-note" role="status">Loading active players from SWL GameCenter…</div></main>
 <footer><div class="wrap"><span>© Sandlot Wiffle Ball League</span><a href="index.html#teams">Return to Meet the Teams ↑</a></div></footer>
-<!-- Once a roster spot has a real player name, the script links that name to the player profile. -->
 <script>
-document.querySelectorAll('.player-card').forEach(card => {
-  const heading = card.querySelector('h2');
-  if (!heading) return;
-  const name = heading.textContent.trim();
-  if (!name || /^Player\s+\d+$/i.test(name) || card.querySelector('.status')?.textContent.trim() === 'TBD' && card.querySelector('p')?.textContent.includes('to be announced')) return;
-  const link = document.createElement('a');
-  link.className = 'player-link';
-  link.href = 'player.html?name=' + encodeURIComponent(name);
-  link.textContent = name;
-  heading.replaceChildren(link);
-});
+(() => {
+  'use strict';
+  const API = 'https://swl-gamecenter-api.sandlotwiffleball-2022.workers.dev/api/public';
+  const TEAM_NAME = 'Ice Cold Pitchers';
+  const roster = document.getElementById('roster');
+  const note = document.getElementById('roster-note');
+  const normalize = value => String(value ?? '').trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+  const el = (tag, className, text) => {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  };
+  const playerCard = player => {
+    const card = el('article', 'player-card');
+    const number = String(player.number ?? '').trim();
+    card.append(el('div', 'player-number', number || '—'));
+    const details = el('div');
+    details.append(el('div', 'player-label', 'ACTIVE ROSTER'));
+    const heading = el('h2');
+    const link = el('a', 'player-link', String(player.name || 'Unnamed player'));
+    link.href = 'player.html?name=' + encodeURIComponent(String(player.name || ''));
+    heading.append(link);
+    details.append(heading);
+    details.append(el('p', '', String(player.hometown || 'Hometown not listed')));
+    card.append(details);
+    if (number) card.append(el('span', 'status', number));
+    return card;
+  };
+  async function loadRoster() {
+    try {
+      const response = await fetch(API, {cache: 'no-store'});
+      if (!response.ok) throw new Error('API HTTP ' + response.status);
+      const data = await response.json();
+      if (!Array.isArray(data.teams) || !Array.isArray(data.players)) throw new Error('Unexpected API response');
+      const team = data.teams.find(t => normalize(t.name) === normalize(TEAM_NAME));
+      if (!team) throw new Error('Team not found in the Teams sheet');
+      const players = data.players.filter(p => String(p.teamId) === String(team.id) && String(p.name || '').trim());
+      players.sort((a,b) => String(a.name).localeCompare(String(b.name)));
+      roster.replaceChildren(...players.map(playerCard));
+      note.textContent = players.length ? 'Showing ' + players.length + ' active player' + (players.length === 1 ? '' : 's') + '. Roster updates from the SWL Players sheet.' : 'No active Ice Cold Pitchers players are currently listed. Set Active to TRUE in the Players sheet to display them here.';
+    } catch (error) {
+      console.error('SWL roster loading error:', error);
+      note.textContent = 'The live roster could not be loaded right now. Please refresh the page and try again.';
+    }
+  }
+  loadRoster();
+})();
 </script>
 </body></html>
