@@ -428,7 +428,13 @@ function standingsTeamIcon(teamName){
  };
  const icon=document.createElement('span');
  icon.className='team-icon official-logo';
-  const entry=logoMap[key];
+  // Historical teams can include a location prefix in the Sheets name.
+ // Match their final team-name word without affecting current clubs.
+ const historicalAlias = key.endsWith('hustlers') ? 'hustlers'
+   : key.endsWith('pigeons') ? 'pigeons'
+   : key.endsWith('underdawgz') ? 'underdawgz'
+   : null;
+ const entry=logoMap[key] || (historicalAlias ? logoMap[historicalAlias] : null);
  if(entry){
   const img=document.createElement('img');
   img.src=entry[0];img.alt=teamName+' official logo';img.loading='lazy';
