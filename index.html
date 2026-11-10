@@ -108,6 +108,11 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 .team-icon.official-logo img,.team-logo.official-logo img,.club-mark.official-logo img{display:block;width:100%;height:100%;object-fit:contain}
 .swl-sched-mark.pitch,.swl-sched-mark.brew{background:transparent;color:inherit}
 .swl-sched-mark.pitch img,.swl-sched-mark.brew img{display:block;width:100%;height:100%;object-fit:contain}
+/* Homepage preview controls */
+.swl-expand-actions{text-align:center;margin:22px 0 6px}
+.swl-expand-button{appearance:none;background:#14253f;color:#fff;border:0;border-radius:10px;padding:13px 25px;font:inherit;font-size:13px;font-weight:850;cursor:pointer;transition:background .2s}
+.swl-expand-button:hover,.swl-expand-button:focus-visible{background:#e23d45}
+#swlScheduleWeeks .swl-series[hidden],#swlScheduleWeeks .swl-week[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -227,7 +232,8 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <div class="swl-series" data-team-a="Flamingos" data-team-b="Hammerheads"><div class="swl-series-day">Sun, Aug 08</div><div class="swl-series-teams"><a class="swl-sched-team" href="team-flamingos.html"><span class="swl-sched-mark"><img src="flamingos-logo.png" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('F'))"></span><span>Flamingos</span></a><span class="swl-sched-vs">VS</span><a class="swl-sched-team" href="team-hammerheads.html"><span class="swl-sched-mark"><img src="hammerheads-logo.png" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('H'))"></span><span>Hammerheads</span></a></div><div class="swl-series-count">3 games</div></div>
 <div class="swl-series" data-team-a="Sea Robbers" data-team-b="Curve Ballers"><div class="swl-series-day">Sun, Aug 08</div><div class="swl-series-teams"><a class="swl-sched-team" href="team-searobbers.html"><span class="swl-sched-mark"><img src="searobbers-logo.png" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('SR'))"></span><span>Sea Robbers</span></a><span class="swl-sched-vs">VS</span><a class="swl-sched-team" href="team-curve-ballers.html"><span class="swl-sched-mark"><img src="curveballers-logo.png" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('CB'))"></span><span>Curve Ballers</span></a></div><div class="swl-series-count">3 games</div></div>
 </div>
-</div><div class="swl-postseason"><div class="section-kicker">The road to the championship</div><h3>2027 Postseason · Top 6</h3><p class="muted" style="font-size:12px">Seeds #1 and #2 receive first-round byes. The remaining teams are reseeded for the semifinals.</p><div class="swl-playoff-row"><strong>First Round · Best of 3</strong><span>Aug 21–22, 2027</span><span>#3 vs #6 &nbsp;·&nbsp; #4 vs #5</span></div><div class="swl-playoff-row"><strong>Semifinals · Best of 3</strong><span>Sep 4–5, 2027</span><span>#1 vs lowest remaining &nbsp;·&nbsp; #2 vs highest remaining</span></div><div class="swl-playoff-row"><strong>SWL Championship · Best of 5</strong><span>Sep 18–19, 2027</span><span>Semifinal winners</span></div></div><p class="swl-sched-footnote">Dates are subject to league confirmation. Playoff dates assume each series finishes during its assigned weekend. No start times have been announced.</p>
+</div><div class="swl-expand-actions"><button type="button" class="swl-expand-button" id="swlScheduleToggle" aria-expanded="false" aria-controls="swlScheduleWeeks">Show Full Schedule</button></div>
+<div class="swl-postseason"><div class="section-kicker">The road to the championship</div><h3>2027 Postseason · Top 6</h3><p class="muted" style="font-size:12px">Seeds #1 and #2 receive first-round byes. The remaining teams are reseeded for the semifinals.</p><div class="swl-playoff-row"><strong>First Round · Best of 3</strong><span>Aug 21–22, 2027</span><span>#3 vs #6 &nbsp;·&nbsp; #4 vs #5</span></div><div class="swl-playoff-row"><strong>Semifinals · Best of 3</strong><span>Sep 4–5, 2027</span><span>#1 vs lowest remaining &nbsp;·&nbsp; #2 vs highest remaining</span></div><div class="swl-playoff-row"><strong>SWL Championship · Best of 5</strong><span>Sep 18–19, 2027</span><span>Semifinal winners</span></div></div><p class="swl-sched-footnote">Dates are subject to league confirmation. Playoff dates assume each series finishes during its assigned weekend. No start times have been announced.</p>
 <details class="swl-history-results"><summary>View 2026 postseason results</summary><div class="schedule-list">
 <div class="game"><div class="datebox"><b>SF</b><small>2026</small></div><div class="game-info"><b>Sluggers vs. Biscuits</b><span>Semifinal · Game 1: Sluggers 2–0</span></div><div class="game-status">Final</div></div>
 <div class="game"><div class="datebox"><b>SF</b><small>2026</small></div><div class="game-info"><b>Sluggers vs. Biscuits</b><span>Semifinal · Game 2: Biscuits 1–0</span></div><div class="game-status">Final</div></div>
@@ -250,6 +256,7 @@ section{padding:76px 0}.section-head{display:flex;align-items:end;justify-conten
 <button type="button" class="filter" id="statsRefresh">Refresh stats</button>
 </div>
 <div class="panel" id="statsPanel"><div class="stats-message">Loading batting statistics…</div></div>
+<div class="swl-expand-actions"><button type="button" class="swl-expand-button" id="swlStatsToggle" aria-expanded="false" hidden>Show All Stats</button></div>
 </div></section>
 
 <section id="playoffs"><div class="wrap"><div class="section-head"><div><div class="section-kicker">Win or go home</div><h2>2026 Playoff Bracket</h2></div><p>The Sluggers survived a semifinal thriller, then became champions after winning three straight championship games.</p></div>
@@ -362,10 +369,14 @@ function drawStats(){
  for(const [key,label] of columns){const th=document.createElement('th');th.className='num';const b=document.createElement('button');b.type='button';b.className='stats-sort';b.textContent=label+(sortKey===key?' ↓':'');b.title='Sort by '+label;b.addEventListener('click',()=>{statsSort.value=key;drawStats()});th.append(b);tr.append(th)}
  thead.append(tr);table.append(thead);
  const tbody=document.createElement('tbody');
- for(const p of players){const row=document.createElement('tr');const nameCell=document.createElement('td');const playerLink=document.createElement('a');const params=new URLSearchParams({name:safeText(p.name),team:safeText(p.teamId)});if(p.playerId||p.id)params.set('id',safeText(p.playerId||p.id));playerLink.href='player.html?'+params.toString();playerLink.textContent=safeText(p.name);playerLink.className='player-profile-link';playerLink.title='View '+safeText(p.name)+' player profile';nameCell.append(playerLink);row.append(nameCell);const teamCell=document.createElement('td');teamCell.textContent=teamNames[String(p.teamId)]||safeText(p.teamId);row.append(teamCell);for(const [key] of columns){const td=document.createElement('td');td.className='num';td.textContent=statValue(p,key);row.append(td)}tbody.append(row)}
+ for(const p of (window.swlStatsExpanded?players:players.slice(0,5))){const row=document.createElement('tr');const nameCell=document.createElement('td');const playerLink=document.createElement('a');const params=new URLSearchParams({name:safeText(p.name),team:safeText(p.teamId)});if(p.playerId||p.id)params.set('id',safeText(p.playerId||p.id));playerLink.href='player.html?'+params.toString();playerLink.textContent=safeText(p.name);playerLink.className='player-profile-link';playerLink.title='View '+safeText(p.name)+' player profile';nameCell.append(playerLink);row.append(nameCell);const teamCell=document.createElement('td');teamCell.textContent=teamNames[String(p.teamId)]||safeText(p.teamId);row.append(teamCell);for(const [key] of columns){const td=document.createElement('td');td.className='num';td.textContent=statValue(p,key);row.append(td)}tbody.append(row)}
  table.append(tbody);sc.append(table);statsPanel.append(sc);
  const foot=document.createElement('div');foot.className='table-foot';foot.textContent=`${players.length} player(s) · ${statsSeason.value==='all'?'Career totals (all recorded seasons)':statsSeason.value+' season'} · GameCenter statistics`;
  statsPanel.append(foot);
+ const toggle=document.getElementById('swlStatsToggle');
+ toggle.hidden=players.length<=5;
+ toggle.textContent=window.swlStatsExpanded?'Show Less Stats':'Show All Stats';
+ toggle.setAttribute('aria-expanded',String(!!window.swlStatsExpanded));
 }
 function configureSort(type){statsSort.replaceChildren();for(const [key,label] of statColumns[type])statsSort.add(new Option(label,key));statsSort.value=sortDefaults[type]}
 async function showStats(type,force=false){
@@ -541,21 +552,42 @@ loadLiveStandings();setInterval(loadLiveStandings,60000);
 <script>
 (function(){
  const select=document.getElementById('swlScheduleTeam');
+ const toggle=document.getElementById('swlScheduleToggle');
+ let expanded=false;
  const count=document.getElementById('swlScheduleCount');
  if(!select)return;
- select.addEventListener('change',function(){
+ function updateSchedule(){
   const selected=select.value;
   let total=0;
+  let matchingWeeks=0;
   document.querySelectorAll('#swlScheduleWeeks .swl-week').forEach(week=>{
    let visible=0;
    week.querySelectorAll('.swl-series').forEach(series=>{
-    const show=!selected||series.dataset.teamA===selected||series.dataset.teamB===selected;
-    series.hidden=!show;
-    if(show){visible++;total++;}
+    const match=!selected||series.dataset.teamA===selected||series.dataset.teamB===selected;
+    series.hidden=!match;
+    if(match){visible++;total++;}
    });
-   week.hidden=visible===0;
+   if(visible){matchingWeeks++;}
+   week.hidden=visible===0||(!expanded&&matchingWeeks>1);
   });
   count.textContent=total+' series'+(selected?' for '+selected:'');
+  toggle.textContent=expanded?'Show Less Schedule':'Show Full Schedule';
+  toggle.setAttribute('aria-expanded',String(expanded));
+  toggle.hidden=matchingWeeks<=1;
+ }
+ select.addEventListener('change',updateSchedule);
+ toggle.addEventListener('click',()=>{expanded=!expanded;updateSchedule();});
+ updateSchedule();
+})();
+</script>
+<script>
+(function(){
+ const toggle=document.getElementById('swlStatsToggle');
+ if(!toggle)return;
+ window.swlStatsExpanded=false;
+ toggle.addEventListener('click',()=>{
+  window.swlStatsExpanded=!window.swlStatsExpanded;
+  if(typeof drawStats==='function')drawStats();
  });
 })();
 </script>
